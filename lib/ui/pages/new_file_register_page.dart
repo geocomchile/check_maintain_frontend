@@ -1,4 +1,5 @@
 import 'package:check_maintain_frontend/models/devices.dart';
+import 'package:check_maintain_frontend/ui/widgets/custom_button.dart';
 import 'package:check_maintain_frontend/ui/widgets/forms/device_selector_widget.dart';
 import 'package:check_maintain_frontend/ui/widgets/forms/file_picker_widget.dart';
 import 'package:check_maintain_frontend/ui/widgets/forms/image_picker_widget.dart';
@@ -44,14 +45,10 @@ class NewFileRegisterPage extends StatelessWidget {
         const Row(children: [Expanded(child: ImagePickerWidget())]),
         const Row(children: [Expanded(child: FilePickerWidget())]),
         Row(children: [
-          ElevatedButton.icon(
-                onPressed: () {},
-                icon: const Icon(Icons.save),
-                label: const Text('Guardar')),
-          ElevatedButton.icon(
-                onPressed: () {},
-                icon: const Icon(Icons.cancel),
-                label: const Text('Cancelar')),
+          CustomButton(title: 'Guardar', icon: Icons.save_outlined, onPressed: () {}),
+          const SizedBox(width: 10),
+          CustomButton(
+              title: 'Cancelar', icon: Icons.cancel_outlined, onPressed: () {}),
         ]),
       ]),
     );
