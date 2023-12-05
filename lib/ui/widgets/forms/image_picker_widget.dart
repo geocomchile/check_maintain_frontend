@@ -22,24 +22,19 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
       setState(() {
         _selectedImage = File(image.path);
       });
+
+      
     }
   }
 
-  Future<void> _pickImageGallery() async {
-   final XFile? image = await _imagePicker.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      setState(() {
-        _selectedImage = File(image.path);
-      });
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     return InkWell(
       onTap: () {
-        _showImageSourceSelection(context);
+        _pickImage();
       },
       child: DecoratedBox(
         
@@ -64,35 +59,6 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
 
   }
 
-  void _showImageSourceSelection(BuildContext context) {
-  showModalBottomSheet(
-    context: context,
-    builder: (BuildContext context) {
-      return SafeArea(
-        child: Wrap(
-          children: <Widget>[
-            ListTile(
-              leading: const Icon(Icons.camera_alt),
-              title: const Text('Cámara'),
-              onTap: () {
-                Navigator.of(context).pop();
-                _pickImage();
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.photo_library),
-              title: const Text('Galería'),
-              onTap: () {
-                context.pop();
-                _pickImageGallery();
-              },
-            ),
-          ],
-        ),
-      );
-    },
-  );
 
-}
 
 }
