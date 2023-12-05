@@ -16,6 +16,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Check Maintainer',
       theme: AppTheme().getTheme(),
-    );
+    ); 
   }
 }
