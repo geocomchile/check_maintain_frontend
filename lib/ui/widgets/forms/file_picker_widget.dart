@@ -15,9 +15,12 @@ class _FilePickerWidgetState extends State<FilePickerWidget> {
       Future<void> _pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
     if (result != null) {
-      setState(() {
-        _selectedFile = File(result.files.single.path!);
-      });
+      // setState(() {
+      //   _selectedFile = File(result.files.);
+      // });
+
+      // File file = File(result.files.single.path!);
+      print(result.files.first.name);
     }
   }
 
