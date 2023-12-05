@@ -34,10 +34,25 @@ class NewFileRegisterPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('New File Register'),
       ),
-      body:  Column(children: [
-        Row(children: [Expanded(child: DeviceSelectorWidget(devices: devices,))]),
+      body: Column(children: [
+        Row(children: [
+          Expanded(
+              child: DeviceSelectorWidget(
+            devices: devices,
+          ))
+        ]),
         const Row(children: [Expanded(child: ImagePickerWidget())]),
         const Row(children: [Expanded(child: FilePickerWidget())]),
+        Row(children: [
+          ElevatedButton.icon(
+                onPressed: () {},
+                icon: const Icon(Icons.save),
+                label: const Text('Guardar')),
+          ElevatedButton.icon(
+                onPressed: () {},
+                icon: const Icon(Icons.cancel),
+                label: const Text('Cancelar')),
+        ]),
       ]),
     );
   }
