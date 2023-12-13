@@ -1,9 +1,4 @@
-import 'package:check_maintain_frontend/ui/pages/home_page.dart';
-import 'package:check_maintain_frontend/ui/pages/login_page.dart';
-import 'package:check_maintain_frontend/ui/pages/logout_page.dart';
-import 'package:check_maintain_frontend/ui/pages/new_file_register_page.dart';
-import 'package:check_maintain_frontend/ui/pages/profile_page.dart';
-import 'package:check_maintain_frontend/ui/pages/settings_page.dart';
+import 'package:check_maintain_frontend/presentation/screens/screens.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(
@@ -11,29 +6,29 @@ final appRouter = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      name: HomePage.name,
-      builder: (context, state) => const HomePage(),
+      name: HomeScreen.name,
+      builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
         path: '/new-file-register',
-        name: NewFileRegisterPage.name,
-        builder: (context, state) => NewFileRegisterPage()),
+        name: NewFileRegisterScreen.name,
+        builder: (context, state) => NewFileRegisterScreen()),
     GoRoute(
         path: '/profile',
-        name: ProfilePage.name,
-        builder: (context, state) => const ProfilePage()),
+        name: ProfileScreen.name,
+        builder: (context, state) => const ProfileScreen()),
     GoRoute(
         path: '/settings',
-        name: SettingsPage.name,
-        builder: (context, state) => const SettingsPage()),
+        name: SettingsScreen.name,
+        builder: (context, state) => const SettingsScreen()),
     GoRoute(
         path: '/logout',
-        name: LogoutPage.name,
-        builder: (context, state) => const LogoutPage()),
+        name: LogoutScreen.name,
+        builder: (context, state) => const LogoutScreen()),
     GoRoute(
       path: '/login',
-      name: LoginPage.name,
-      builder: (context, state) => const LoginPage(),
+      name: LoginScreen.name,
+      builder: (context, state) => const LoginScreen(),
     )
   ],
 );

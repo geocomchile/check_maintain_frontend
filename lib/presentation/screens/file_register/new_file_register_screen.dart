@@ -1,13 +1,13 @@
-import 'package:check_maintain_frontend/models/devices.dart';
-import 'package:check_maintain_frontend/ui/widgets/custom_button.dart';
-import 'package:check_maintain_frontend/ui/widgets/forms/device_selector_widget.dart';
-import 'package:check_maintain_frontend/ui/widgets/forms/file_picker_widget.dart';
-import 'package:check_maintain_frontend/ui/widgets/forms/image_picker_widget.dart';
+import 'package:check_maintain_frontend/domain/entities/device.dart';
+import 'package:check_maintain_frontend/presentation/widgets/share/custom_button.dart';
+import 'package:check_maintain_frontend/presentation/widgets/form/device_selector_widget.dart';
+import 'package:check_maintain_frontend/presentation/widgets/form/file_picker_widget.dart';
+import 'package:check_maintain_frontend/presentation/widgets/form/image_picker_widget.dart';
 import 'package:flutter/material.dart';
 
-class NewFileRegisterPage extends StatelessWidget {
+class NewFileRegisterScreen extends StatelessWidget {
   static const name = 'NewFileRegister';
-  NewFileRegisterPage({super.key});
+  NewFileRegisterScreen({super.key});
   final devices = [
     Device(
       id: 1,

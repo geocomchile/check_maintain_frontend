@@ -1,4 +1,4 @@
-import 'package:check_maintain_frontend/models/devices.dart';
+import 'package:check_maintain_frontend/domain/entities/device.dart';
 import 'package:flutter/material.dart';
 
 class DeviceSelectorWidget extends StatefulWidget {

@@ -1,11 +1,10 @@
-import 'package:check_maintain_frontend/ui/widgets/devices/device_card.dart';
-import 'package:check_maintain_frontend/ui/widgets/side_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:check_maintain_frontend/presentation/widgets/widgets.dart';
 
-class HomePage extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   static const name = 'HomePage';
-  const HomePage({super.key});
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

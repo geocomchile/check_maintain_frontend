@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class LogoutPage extends StatelessWidget {
-  static const name = 'logout';
-  const LogoutPage({super.key});
+class ProfileScreen extends StatelessWidget {
+  static const name = 'profile';
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: const Text('Logout'),
+        title: const Text('Profile'),
       ),
       body: const Center(
-        child: Text('Logout Page'),
+        child: Text('Profile Screen'),
       ),
     );
   }

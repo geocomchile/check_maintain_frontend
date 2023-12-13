@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginScreen extends StatelessWidget {
   static const name = 'login';
-  const LoginPage({super.key});
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class LoginPage extends StatelessWidget {
         title: const Text('Login'),
       ),
       body: const Center(
-        child: Text('Login Page'),
+        child: Text('Login '),
       ),
     );
   }
