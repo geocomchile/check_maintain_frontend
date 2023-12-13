@@ -6,9 +6,9 @@ import 'package:check_maintain_frontend/infrastructure/datasources/auth_datasour
 class AuthRepositoryImpl extends AuthRepository {
   final AuthDataSource dataSource;
 
-  AuthRepositoryImpl(
+  AuthRepositoryImpl({
     AuthDataSource? dataSource,
-  ) : dataSource = dataSource ?? AuthDataSourceImpl();
+}) : dataSource = dataSource ?? AuthDataSourceImpl();
 
   @override
   Future<User> checkAuthStatus(String token) {

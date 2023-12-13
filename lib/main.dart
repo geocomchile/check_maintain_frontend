@@ -1,10 +1,10 @@
+import 'package:check_maintain_frontend/config/constants/enviroment.dart';
 import 'package:check_maintain_frontend/config/router/app_router.dart';
 import 'package:check_maintain_frontend/config/theme/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
-  await dotenv.load(fileName: ".env");
+  await Environment.initEnvironment();
   runApp(const MyApp());
 }
 
