@@ -1,4 +1,5 @@
 import 'package:check_maintain_frontend/ui/pages/home_page.dart';
+import 'package:check_maintain_frontend/ui/pages/login_page.dart';
 import 'package:check_maintain_frontend/ui/pages/logout_page.dart';
 import 'package:check_maintain_frontend/ui/pages/new_file_register_page.dart';
 import 'package:check_maintain_frontend/ui/pages/profile_page.dart';
@@ -26,9 +27,13 @@ final appRouter = GoRouter(
         name: SettingsPage.name,
         builder: (context, state) => const SettingsPage()),
     GoRoute(
-      path: '/logout',
-      name: LogoutPage.name,
-      builder: (context, state) => const LogoutPage(),
+        path: '/logout',
+        name: LogoutPage.name,
+        builder: (context, state) => const LogoutPage()),
+    GoRoute(
+      path: '/login',
+      name: LoginPage.name,
+      builder: (context, state) => const LoginPage(),
     )
   ],
 );
