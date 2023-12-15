@@ -2,7 +2,6 @@ import 'package:check_maintain_frontend/config/menu/menu_items.dart';
 import 'package:check_maintain_frontend/presentation/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 
 
 class SideDrawer extends StatefulWidget {
@@ -33,7 +32,7 @@ class _SideDrawerState extends State<SideDrawer> {
 
             navDrawerIndex = value;
             final menuItem = appMenuItems[value];
-            context.push(menuItem.url);
+            Get.toNamed(menuItem.url);
             widget.scaffoldKey.currentState?.closeDrawer();
           });
           navDrawerIndex = value;

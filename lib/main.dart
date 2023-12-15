@@ -1,5 +1,6 @@
 import 'package:check_maintain_frontend/config/constants/enviroment.dart';
 import 'package:check_maintain_frontend/config/router/app_router.dart';
+
 import 'package:check_maintain_frontend/config/theme/app_theme.dart';
 import 'package:check_maintain_frontend/presentation/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +19,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: appRouter,
+    return GetMaterialApp(
+      getPages: routes,
       debugShowCheckedModeBanner: false,
       title: 'Check Maintainer',
       theme: AppTheme().getTheme(),

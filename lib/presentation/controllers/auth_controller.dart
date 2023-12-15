@@ -22,6 +22,7 @@ class AuthController extends GetxController {
       this.user.value = user;
       authStatus.value = AuthStatus.authenticated;
       errorMessage.value = '';
+      Get.offAllNamed('/');
     } on CustomError catch (e) {
       logout(e.message);
     } catch (e) {
@@ -33,6 +34,7 @@ class AuthController extends GetxController {
     authStatus.value = AuthStatus.notAuthenticated;
     user.value = null;
     this.errorMessage.value = errorMessage;
+    Get.offAllNamed('/');
 
   }
 }

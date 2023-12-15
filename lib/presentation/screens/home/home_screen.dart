@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:check_maintain_frontend/presentation/widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
         drawer: SideDrawer(scaffoldKey: scaffoldKey),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            context.push('/new-file-register');
+            Get.toNamed('/new-file-register');
           },
           child: const Icon(Icons.add),
         ),
