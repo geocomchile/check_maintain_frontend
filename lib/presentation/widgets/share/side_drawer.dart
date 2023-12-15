@@ -43,7 +43,7 @@ class _SideDrawerState extends State<SideDrawer> {
             padding: EdgeInsets.fromLTRB(28, hasNotch ? 0 : 20, 16, 10),
             child: const Text('Main'),
           ),
-          ...appMenuItems.sublist(0, 4).map((item) {
+          ...appMenuItems.sublist(0, 3).map((item) {
             return NavigationDrawerDestination(
                 icon: Icon(item.icon), label: Text(item.title));
           }),
