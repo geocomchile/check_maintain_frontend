@@ -12,11 +12,11 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<User> checkAuthStatus(String token) {
-    return checkAuthStatus(token);
+    return dataSource.checkAuthStatus(token);
   }
 
   @override
   Future<User> login(String username, String password) {
-    return login(username, password);
+    return dataSource.login(username, password);
   }
 }

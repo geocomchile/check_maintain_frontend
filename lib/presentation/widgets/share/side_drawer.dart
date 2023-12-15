@@ -1,5 +1,7 @@
 import 'package:check_maintain_frontend/config/menu/menu_items.dart';
+import 'package:check_maintain_frontend/presentation/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
 
@@ -22,11 +24,19 @@ class _SideDrawerState extends State<SideDrawer> {
     return NavigationDrawer(
         onDestinationSelected: (value) {
           setState(() {
+            if (appMenuItems[value].title == 'Cerrar sesión') {
+              final AuthController controller = Get.find();
+              controller.logout('');
+              widget.scaffoldKey.currentState?.closeDrawer();
+              return;
+            }
+
             navDrawerIndex = value;
             final menuItem = appMenuItems[value];
             context.push(menuItem.url);
             widget.scaffoldKey.currentState?.closeDrawer();
           });
+          navDrawerIndex = value;
         },
         selectedIndex: navDrawerIndex,
         children: [

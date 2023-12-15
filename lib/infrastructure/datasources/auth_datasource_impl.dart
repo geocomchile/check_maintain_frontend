@@ -30,21 +30,17 @@ class AuthDataSourceImpl extends AuthDataSource {
       );
       final user = UserMapper.userJsonToEntity(response.data);
       return user;
-    } catch (e) {
-      if (e is DioException) {
-        switch (e.response?.statusCode) {
-          case 400:
-            throw WrongCredentials();
-          case 401:
-            throw InvalidToken();
-          case 408:
-            throw ConnectionTimeout();
-          default:
-            throw CustomError(e.response?.statusMessage ?? 'Unknown error');
-        }
-      } else {
-        throw CustomError(e.toString());
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 400) {
+        throw CustomError(
+            e.response?.data['non_field_errors'] ?? 'Credenciales incorrectas');
       }
+      if (e.type == DioExceptionType.connectionTimeout) {
+        throw CustomError('Revisar conexión a internet');
+      }
+      throw Exception();
+    } catch (e) {
+      throw Exception();
     }
   }
 }
