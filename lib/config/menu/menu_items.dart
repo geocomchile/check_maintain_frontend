@@ -32,12 +32,15 @@ const appMenuItems = <MenuItem>[
     icon: Icons.settings_outlined,
     url: '/settings',
   ),
-
+  MenuItem(
+      title: 'Login',
+      subtitle: 'Login',
+      icon: Icons.login_outlined,
+      url: '/login'),
   MenuItem(
     title: 'Cerrar sesión',
     subtitle: 'Salir',
     icon: Icons.logout_outlined,
     url: '/logout',
   ),
- 
 ];

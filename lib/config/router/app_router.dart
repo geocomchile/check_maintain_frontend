@@ -10,7 +10,7 @@ final appRouterNotifier = AppRouterNotifier(authController);
 
 final appRouter = GoRouter(
     refreshListenable: appRouterNotifier,
-    initialLocation: '/',
+    initialLocation: '/splash',
     routes: [
       GoRoute(
         path: '/splash',
@@ -44,5 +44,27 @@ final appRouter = GoRouter(
       )
     ],
     redirect: (context, state) {
+      
+      final isGoingTo = state.matchedLocation;
+      final authStatus = authController.authStatus.value;
+  
+
+      if ( isGoingTo == '/splash' && authStatus == AuthStatus.checking ) return null;
+
+      if ( authStatus == AuthStatus.notAuthenticated ) {
+        if ( isGoingTo == '/login') return null;
+
+        return '/login';
+      }
+
+      if ( authStatus == AuthStatus.authenticated ) {
+        if ( isGoingTo == '/login'  || isGoingTo == '/splash' ){
+           return '/';
+        }
+      }
+
+
       return null;
-    });
+    },
+    
+    );
