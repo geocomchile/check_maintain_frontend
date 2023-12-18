@@ -10,17 +10,18 @@ class AuthController extends GetxController {
   var authStatus = AuthStatus.checking.obs;
   var user = Rxn<User>();
   var errorMessage = ''.obs;
-  final AuthRepositoryImpl _authRepositoryImpl;
+  final AuthRepositoryImpl _authRepository;
   final keyValueStorageService = KeyValueStorageServiceImpl();
 
-  AuthController({AuthRepositoryImpl? authRepositoryImpl})
-    : _authRepositoryImpl = authRepositoryImpl ?? AuthRepositoryImpl();
-
+  AuthController({authRepositoryImpl})
+      : _authRepository = authRepositoryImpl ?? AuthRepositoryImpl() {
+    checkAuthStatus();
+  }
 
   void login(String username, String password) async {
     await Future.delayed(const Duration(milliseconds: 500));
     try {
-      final user = await _authRepositoryImpl.login(username, password);
+      final user = await _authRepository.login(username, password);
       this.user.value = user;
       authStatus.value = AuthStatus.authenticated;
       await keyValueStorageService.setKeyValue('token', user.token);
@@ -37,7 +38,22 @@ class AuthController extends GetxController {
     await keyValueStorageService.deleteKeyValue('token');
     user.value = null;
     this.errorMessage.value = errorMessage;
+  }
+
+  void checkAuthStatus() async {
+    final token = await keyValueStorageService.getKeyValue('token');
+    if (token == null) {
+      return logout('');
+    }
+    try {
+      final user = await _authRepository.checkAuthStatus(token);
+      this.user.value = user;
+      authStatus.value = AuthStatus.authenticated;
+    } on CustomError catch (e) {
+      logout(e.message);
+    } catch (e) {
+      logout('Error desconocido');
+    }
 
   }
 }
-
