@@ -1,5 +1,6 @@
 import 'package:check_maintain_frontend/config/router/app_router_notifier.dart';
 import 'package:check_maintain_frontend/presentation/controllers/auth_controller.dart';
+import 'package:check_maintain_frontend/presentation/screens/auth/check_auth_status_screen.dart';
 import 'package:check_maintain_frontend/presentation/screens/screens.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
@@ -11,6 +12,10 @@ final appRouter = GoRouter(
     refreshListenable: appRouterNotifier,
     initialLocation: '/',
     routes: [
+      GoRoute(
+        path: '/splash',
+        builder: (context, state) => const CheckAuthStatusScreen(),
+      ),
       GoRoute(
         path: '/',
         name: HomeScreen.name,
