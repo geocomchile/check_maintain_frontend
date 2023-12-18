@@ -1,32 +1,34 @@
-import 'package:check_maintain_frontend/presentation/controllers/auth_controller.dart';
 import 'package:check_maintain_frontend/presentation/screens/screens.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
-class AuthMiddleware extends GetMiddleware {
-  @override
-  RouteSettings? redirect(String? route) {
-    final AuthController controller = Get.find();
-    if (controller.authStatus.value != AuthStatus.authenticated) {
-      return const RouteSettings(name: '/login');
-    }
-
-    return null;
-  }
-}
-
-final routes = [
-  GetPage(
-    name: '/',
-    page: () => const HomeScreen(),
-    middlewares: [AuthMiddleware()],
-  ),
-  GetPage(name: '/new-file-register', page: () => NewFileRegisterScreen(), middlewares: [AuthMiddleware()]),
-  GetPage(name: '/profile', page: () => const ProfileScreen(), middlewares: [AuthMiddleware()]),
-  GetPage(name: '/settings', page: () => const SettingsScreen(), middlewares: [AuthMiddleware()]),
-  GetPage(name: '/logout', page: () => const LogoutScreen(), middlewares: [AuthMiddleware()]),
-  GetPage(
-    name: '/login',
-    page: () => const LoginScreen(),
-  )
-];
+final appRouter = GoRouter(
+  initialLocation: '/',
+  routes: [
+    GoRoute(
+      path: '/',
+      name: HomeScreen.name,
+      builder: (context, state) => const HomeScreen(),
+    ),
+    GoRoute(
+        path: '/new-file-register',
+        name: NewFileRegisterScreen.name,
+        builder: (context, state) => NewFileRegisterScreen()),
+    GoRoute(
+        path: '/profile',
+        name: ProfileScreen.name,
+        builder: (context, state) => const ProfileScreen()),
+    GoRoute(
+        path: '/settings',
+        name: SettingsScreen.name,
+        builder: (context, state) => const SettingsScreen()),
+    GoRoute(
+        path: '/logout',
+        name: LogoutScreen.name,
+        builder: (context, state) => const LogoutScreen()),
+    GoRoute(
+      path: '/login',
+      name: LoginScreen.name,
+      builder: (context, state) => const LoginScreen(),
+    )
+  ],
+);
