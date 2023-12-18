@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:check_maintain_frontend/infrastructure/services/key_value_storage_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,7 +7,7 @@ class KeyValueStorageServiceImpl extends KeyValueStorageService {
   }
 
   @override
-  Future<Bool> deleteKeyValue(String key) async {
+  Future<bool> removeKey(String key) async {
     final prefs = await getSharedPreferences();
     return await prefs.remove(key);
   }

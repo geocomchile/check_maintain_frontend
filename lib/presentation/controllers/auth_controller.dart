@@ -33,15 +33,15 @@ class AuthController extends GetxController {
     }
   }
 
-  void logout(String errorMessage) async {
+  Future<void> logout(String errorMessage) async {
+    await keyValueStorageService.removeKey('token');
     authStatus.value = AuthStatus.notAuthenticated;
-    await keyValueStorageService.deleteKeyValue('token');
     user.value = null;
     this.errorMessage.value = errorMessage;
   }
 
   void checkAuthStatus() async {
-    final token = await keyValueStorageService.getKeyValue('token');
+    final token = await keyValueStorageService.getKeyValue<String>('token');
     if (token == null) {
       return logout('');
     }
