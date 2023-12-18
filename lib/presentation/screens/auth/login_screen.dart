@@ -25,8 +25,8 @@ class MyCustomForm extends StatefulWidget {
 }
 
 class _MyCustomFormState extends State<MyCustomForm> {
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController(text: 'obedmacallums');
+  final TextEditingController passwordController = TextEditingController(text: "O12345678");
 
   @override
   void dispose() {
