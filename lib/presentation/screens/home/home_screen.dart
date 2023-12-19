@@ -1,5 +1,7 @@
+import 'package:check_maintain_frontend/presentation/controllers/device_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:check_maintain_frontend/presentation/widgets/widgets.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,6 +10,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final deviceController = Get.find<DeviceController>();
+    deviceController.getDevices();
+
     final scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
         key: scaffoldKey,
@@ -35,27 +40,22 @@ class HomeScreen extends StatelessWidget {
           ],
           title: const Text('Check Maintain'),
         ),
-        body: const Column(
-          children: [
-            Row(
-              children: [
-                Expanded(
-                    child: DeviceCard(
-                        deviceName: "Device 1",
-                        serialNumber: '123344',
-                        model: 'model'))
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                    child: DeviceCard(
-                        deviceName: "Device 2",
-                        serialNumber: '123344',
-                        model: 'model'))
-              ],
-            ),
-          ],
-        ));
+        body: 
+        
+        Obx(() {
+          if (deviceController.devices.isEmpty) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return ListView.builder(
+              itemCount: deviceController.devices.length,
+              itemBuilder: (context, index) {
+                final device = deviceController.devices[index];
+                return DeviceCard(deviceName: device.modelName, serialNumber: device.serialNumber, model: device.modelName,);
+              },
+            );
+          }
+        }));
   }
 }
