@@ -1,38 +1,20 @@
 import 'package:check_maintain_frontend/domain/entities/device.dart';
+import 'package:check_maintain_frontend/presentation/controllers/device_controller.dart';
 import 'package:check_maintain_frontend/presentation/widgets/share/custom_button.dart';
 import 'package:check_maintain_frontend/presentation/widgets/form/device_selector_widget.dart';
 import 'package:check_maintain_frontend/presentation/widgets/form/file_picker_widget.dart';
 import 'package:check_maintain_frontend/presentation/widgets/form/image_picker_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NewFileRegisterScreen extends StatelessWidget {
   static const name = 'NewFileRegister';
-  NewFileRegisterScreen({super.key});
-  final devices = [
-    Device(
-      id: 1,
-      modelName: 'Modelo 1',
-      modelTypeDevice: 'Tipo 1',
-      serialNumber: '123456789',
-      active: true,
-      created: DateTime.now(),
-      updated: DateTime.now(),
-      modelId: 1,
-    ),
-    Device(
-      id: 2,
-      modelName: 'Modelo 2',
-      modelTypeDevice: 'Tipo 2',
-      serialNumber: '987654321',
-      active: true,
-      created: DateTime.now(),
-      updated: DateTime.now(),
-      modelId: 2,
-    ),
-  ];
+  const NewFileRegisterScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
+    final devices = Get.find<DeviceController>().devices;
     return Scaffold(
       appBar: AppBar(
         title: const Text('New File Register'),
