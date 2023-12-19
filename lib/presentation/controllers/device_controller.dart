@@ -13,8 +13,6 @@ class DeviceController extends GetxController{
     final authController = Get.find<AuthController>();
     token = authController.user.value?.token ?? '';
     _devicesRepositoryImpl = DevicesRepositoryImpl(dataSource: DeviceDataSourceImpl(token: token));
-    getDevices();
-
   }
 
     Future<void> getDevices() async{
