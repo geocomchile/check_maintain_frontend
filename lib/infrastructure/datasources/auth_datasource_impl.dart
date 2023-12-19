@@ -60,7 +60,7 @@ class AuthDataSourceImpl extends AuthDataSource {
       }
       throw Exception();
     } catch (e) {
-      throw Exception();
+      throw CustomError('Error desconocido');
     }
   }
 }
