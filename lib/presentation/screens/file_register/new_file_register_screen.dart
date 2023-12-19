@@ -17,6 +17,7 @@ class NewFileRegisterScreen extends StatelessWidget {
       active: true,
       created: DateTime.now(),
       updated: DateTime.now(),
+      modelId: 1,
     ),
     Device(
       id: 2,
@@ -26,6 +27,7 @@ class NewFileRegisterScreen extends StatelessWidget {
       active: true,
       created: DateTime.now(),
       updated: DateTime.now(),
+      modelId: 2,
     ),
   ];
 
@@ -45,7 +47,8 @@ class NewFileRegisterScreen extends StatelessWidget {
         const Row(children: [Expanded(child: ImagePickerWidget())]),
         const Row(children: [Expanded(child: FilePickerWidget())]),
         Row(children: [
-          CustomButton(title: 'Guardar', icon: Icons.save_outlined, onPressed: () {}),
+          CustomButton(
+              title: 'Guardar', icon: Icons.save_outlined, onPressed: () {}),
           const SizedBox(width: 10),
           CustomButton(
               title: 'Cancelar', icon: Icons.cancel_outlined, onPressed: () {}),
