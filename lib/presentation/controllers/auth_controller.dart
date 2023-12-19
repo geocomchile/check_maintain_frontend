@@ -42,7 +42,7 @@ class AuthController extends GetxController {
 
   Future<void> checkAuthStatus() async {
     final token = await keyValueStorageService.getKeyValue<String>('token');
-    if (token == null) {
+        if (token == null) {
       return logout('');
     }
     try {
