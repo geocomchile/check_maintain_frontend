@@ -5,11 +5,11 @@ import 'package:check_maintain_frontend/infrastructure/errors/auth_errors.dart';
 import 'package:check_maintain_frontend/infrastructure/mappers/device_mapper.dart';
 import 'package:dio/dio.dart';
 
-class DeviceDatasourceImpl extends DevicesDataSource {
+class DeviceDataSourceImpl extends DevicesDataSource {
   final String token;
   late final Dio dio;
 
-  DeviceDatasourceImpl({required this.token}) {
+  DeviceDataSourceImpl({required this.token}) {
     dio = Dio(
       BaseOptions(
         baseUrl: Environment.apiUrl,

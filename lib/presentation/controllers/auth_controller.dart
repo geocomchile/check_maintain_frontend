@@ -13,12 +13,12 @@ class AuthController extends GetxController {
   final AuthRepositoryImpl _authRepository;
   final keyValueStorageService = KeyValueStorageServiceImpl();
 
-  AuthController({authRepositoryImpl})
+  AuthController({AuthRepositoryImpl? authRepositoryImpl})
       : _authRepository = authRepositoryImpl ?? AuthRepositoryImpl() {
     checkAuthStatus();
   }
 
-  void login(String username, String password) async {
+  Future<void> login(String username, String password) async {
     await Future.delayed(const Duration(milliseconds: 500));
     try {
       final user = await _authRepository.login(username, password);
@@ -40,7 +40,7 @@ class AuthController extends GetxController {
     this.errorMessage.value = errorMessage;
   }
 
-  void checkAuthStatus() async {
+  Future<void> checkAuthStatus() async {
     final token = await keyValueStorageService.getKeyValue<String>('token');
     if (token == null) {
       return logout('');
