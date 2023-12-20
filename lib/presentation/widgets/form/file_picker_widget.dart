@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'package:check_maintain_frontend/presentation/controllers/new_file_register_form_controller.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FilePickerWidget extends StatefulWidget {
   const FilePickerWidget({super.key});
@@ -13,14 +15,16 @@ class _FilePickerWidgetState extends State<FilePickerWidget> {
   File? _selectedFile;
 
       Future<void> _pickFile() async {
+    final formController = Get.find<NewFileRegisterFormController>();
     FilePickerResult? result = await FilePicker.platform.pickFiles();
     if (result != null) {
-      // setState(() {
-      //   _selectedFile = File(result.files.);
-      // });
+      setState(() {
+        _selectedFile = File(result.files.first.name);
+        formController.setFile(_selectedFile!);
+      });
 
-      // File file = File(result.files.single.path!);
-      // print(result.files.first.name);
+
+
     }
   }
 

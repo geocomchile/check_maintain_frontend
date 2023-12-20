@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:check_maintain_frontend/presentation/controllers/new_file_register_form_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart'; // Asegúrate de agregar image_picker a tus dependencias
 
 class ImagePickerWidget extends StatefulWidget {
@@ -15,11 +17,14 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
   File? _selectedImage;
 
   Future<void> _pickImage() async {
+    final formController = Get.find<NewFileRegisterFormController>();
     final XFile? image =
         await _imagePicker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       setState(() {
         _selectedImage = File(image.path);
+        formController.setImage(_selectedImage!);
+
       });
     }
   }

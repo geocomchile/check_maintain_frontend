@@ -4,7 +4,6 @@ import 'package:check_maintain_frontend/config/constants/enviroment.dart';
 import 'package:check_maintain_frontend/domain/datasources/dl_register_datasource.dart';
 import 'package:check_maintain_frontend/domain/entities/device.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 class DLRegisterDatasourceImpl extends DLRegisterDatasource {
   final String token;
@@ -23,10 +22,10 @@ class DLRegisterDatasourceImpl extends DLRegisterDatasource {
   }
   @override
   Future<void> createRegisterByFiles(
-      Device device, FileImage image, File file) async {
+      Device device, File image, File file) async {
     final response = await dio.post('/file-register/create', data: {
       'device': device.id,
-      'image': await MultipartFile.fromFile(image.file.path),
+      'image': await MultipartFile.fromFile(image.path),
       'file': await MultipartFile.fromFile(file.path),
     });
     print(response.data);

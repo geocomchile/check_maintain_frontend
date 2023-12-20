@@ -1,5 +1,7 @@
 import 'package:check_maintain_frontend/domain/entities/device.dart';
+import 'package:check_maintain_frontend/presentation/controllers/new_file_register_form_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DeviceSelectorWidget extends StatefulWidget {
   final List<Device> devices;
@@ -14,12 +16,15 @@ class _DeviceSelectorWidgetState extends State<DeviceSelectorWidget> {
     Device? selectedDevice;
   @override
   Widget build(BuildContext context) {
+    final formController = Get.find<NewFileRegisterFormController>();
+
     return  DropdownButtonFormField(
       value: selectedDevice,
       hint: const Text('Selecciona un dispositivo'),
       onChanged: (Device? newValue) {
         setState(() {
           selectedDevice = newValue;
+          formController.setDevice(newValue!);
         });
       },
       items: widget.devices.map<DropdownMenuItem<Device>>((Device value) {

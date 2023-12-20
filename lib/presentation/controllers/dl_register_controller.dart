@@ -5,7 +5,6 @@ import 'package:check_maintain_frontend/domain/repositories/dl_register_reposito
 import 'package:check_maintain_frontend/infrastructure/datasources/dl_register_datasource_impl.dart';
 import 'package:check_maintain_frontend/infrastructure/repositories/dl_register_repository_impl.dart';
 import 'package:check_maintain_frontend/presentation/controllers/auth_controller.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DLRegisterController extends GetxController {
@@ -20,7 +19,7 @@ class DLRegisterController extends GetxController {
   }
 
   Future<void> createRegisterByFiles(
-      Device device, FileImage image, File file) async {
+      Device device, File image, File file) async {
     try {
       await _dlRegisterRepositoryImpl.createRegisterByFiles(
           device, image, file);
