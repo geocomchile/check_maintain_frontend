@@ -11,7 +11,7 @@ class DLRegisterRepositoryImpl extends DLRegisterRepository {
 
   @override
   Future<void> createRegisterByFiles(
-      Device device, File image, File file) {
-    return dataSource.createRegisterByFiles(device, image, file);
+      Device device, File image, File file) async{
+    return await dataSource.createRegisterByFiles(device, image, file);
   }
 }

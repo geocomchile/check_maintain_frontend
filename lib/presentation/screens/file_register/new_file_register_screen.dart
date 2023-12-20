@@ -32,12 +32,15 @@ class NewFileRegisterScreen extends StatelessWidget {
         Row(children: [
           CustomButton(
               title: 'Guardar', icon: Icons.save_outlined, onPressed: () {
-                formController.printResult();
+                formController.save();
 
               }),
           const SizedBox(width: 10),
           CustomButton(
-              title: 'Cancelar', icon: Icons.cancel_outlined, onPressed: () {}),
+              title: 'Cancelar', icon: Icons.cancel_outlined, onPressed: () {
+                formController.printResult();
+
+              }),
         ]),
       ]),
     );

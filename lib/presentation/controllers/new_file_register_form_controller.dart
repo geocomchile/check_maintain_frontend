@@ -1,9 +1,10 @@
 import 'dart:io';
 
 import 'package:check_maintain_frontend/domain/entities/device.dart';
+import 'package:check_maintain_frontend/presentation/controllers/dl_register_controller.dart';
 import 'package:get/get.dart';
 
-class NewFileRegisterFormController extends GetxController{
+class NewFileRegisterFormController extends GetxController{  
 
   final _device = Rxn<Device>();
   final _image = Rxn<File>();
@@ -25,8 +26,9 @@ class NewFileRegisterFormController extends GetxController{
     _file.value = file;
   }
 
-  void save(){
-    print('save');
+  Future<void> save() async{
+    final dlRegisterController = Get.find<DLRegisterController>(); 
+    await dlRegisterController.createRegisterByFiles(device!, image!, file!);
   }
 
   void cancel(){
@@ -39,9 +41,9 @@ class NewFileRegisterFormController extends GetxController{
   }
 
   void printResult(){
-    print('device: ${_device.value}');
-    print('image: ${_image.value}');
-    print('file: ${_file.value}');
+    print('device: ${_device.value.runtimeType}');
+    print('image: ${_image.value.runtimeType}');
+    print('file: ${_file.value.runtimeType}');
   }
 
 }
