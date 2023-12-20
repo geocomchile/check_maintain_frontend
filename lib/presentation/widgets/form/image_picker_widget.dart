@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:check_maintain_frontend/presentation/controllers/new_file_register_form_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +12,7 @@ class ImagePickerWidget extends StatefulWidget {
 
 class _ImagePickerWidgetState extends State<ImagePickerWidget> {
   final ImagePicker _imagePicker = ImagePicker();
-  File? _selectedImage;
+  dynamic _selectedImage;
 
   Future<void> _pickImage() async {
     final formController = Get.find<NewFileRegisterFormController>();
@@ -22,7 +20,8 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
         await _imagePicker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       setState(() {
-        _selectedImage = File(image.path);
+        print(image.runtimeType);
+        _selectedImage = image;
         formController.setImage(_selectedImage!);
 
       });

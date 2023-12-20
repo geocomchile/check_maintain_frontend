@@ -12,18 +12,16 @@ class FilePickerWidget extends StatefulWidget {
 }
 
 class _FilePickerWidgetState extends State<FilePickerWidget> {
-  File? _selectedFile;
+  dynamic _selectedFile;
 
       Future<void> _pickFile() async {
     final formController = Get.find<NewFileRegisterFormController>();
     FilePickerResult? result = await FilePicker.platform.pickFiles();
     if (result != null) {
       setState(() {
-        _selectedFile = File(result.files.first.name);
+        _selectedFile = result.files.first;
         formController.setFile(_selectedFile!);
       });
-
-
 
     }
   }

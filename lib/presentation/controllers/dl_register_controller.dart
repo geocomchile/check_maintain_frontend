@@ -20,7 +20,7 @@ class DLRegisterController extends GetxController {
   }
 
   Future<void> createRegisterByFiles(
-      Device device, File image, File file) async {
+      Device device, dynamic image, dynamic file) async {
     try {
       await _dlRegisterRepositoryImpl.createRegisterByFiles(
           device, image, file);
