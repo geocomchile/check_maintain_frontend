@@ -14,6 +14,14 @@ class DeviceSelectorWidget extends StatefulWidget {
 
 class _DeviceSelectorWidgetState extends State<DeviceSelectorWidget> {
     Device? selectedDevice;
+
+  @override
+  void initState() {
+    super.initState();
+    final formController = Get.find<NewFileRegisterFormController>();
+    selectedDevice = formController.device;
+  }
+
   @override
   Widget build(BuildContext context) {
     final formController = Get.find<NewFileRegisterFormController>();

@@ -13,28 +13,31 @@ class FilePickerWidget extends StatefulWidget {
 
 class _FilePickerWidgetState extends State<FilePickerWidget> {
   Uint8List? _selectedFile;
+  String? _fileName;
 
-      Future<void> _pickFile() async {
+  Future<void> _pickFile() async {
     final formController = Get.find<NewFileRegisterFormController>();
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['DAT'],
+    );
     if (result != null) {
       setState(() {
         _selectedFile = result.files.first.bytes!;
+        _fileName = result.files.first.name;
         formController.setFile(_selectedFile!);
       });
-
     }
   }
 
   @override
   Widget build(BuildContext context) {
-   final colors = Theme.of(context).colorScheme;
+    final colors = Theme.of(context).colorScheme;
     return InkWell(
       onTap: () {
         _pickFile();
       },
       child: DecoratedBox(
-        
         decoration: BoxDecoration(
           color: colors.surface,
           borderRadius: BorderRadius.circular(10),
@@ -42,12 +45,13 @@ class _FilePickerWidgetState extends State<FilePickerWidget> {
             color: colors.onSurface.withOpacity(0.12),
           ),
         ),
-        child: const SizedBox(
-          
+        child: SizedBox(
           width: double.infinity,
           height: 200,
           child: Center(
-            child: Text('Selecciona un archivo'),
+            child: (_selectedFile != null)
+                ? Text(_fileName!)
+                : const Text('Selecciona un archivo .DAT'),
           ),
         ),
       ),
