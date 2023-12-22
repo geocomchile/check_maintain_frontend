@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 import 'package:check_maintain_frontend/presentation/controllers/new_file_register_form_controller.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -12,14 +12,14 @@ class FilePickerWidget extends StatefulWidget {
 }
 
 class _FilePickerWidgetState extends State<FilePickerWidget> {
-  dynamic _selectedFile;
+  Uint8List? _selectedFile;
 
       Future<void> _pickFile() async {
     final formController = Get.find<NewFileRegisterFormController>();
     FilePickerResult? result = await FilePicker.platform.pickFiles();
     if (result != null) {
       setState(() {
-        _selectedFile = result.files.first;
+        _selectedFile = result.files.first.bytes!;
         formController.setFile(_selectedFile!);
       });
 

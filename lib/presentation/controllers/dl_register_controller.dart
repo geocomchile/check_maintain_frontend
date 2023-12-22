@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:check_maintain_frontend/domain/entities/device.dart';
 import 'package:check_maintain_frontend/domain/repositories/dl_register_repository.dart';
@@ -20,10 +20,10 @@ class DLRegisterController extends GetxController {
   }
 
   Future<void> createRegisterByFiles(
-      Device device, dynamic image, dynamic file) async {
+      Device device, Uint8List imageBin, Uint8List fileBin) async {
     try {
       await _dlRegisterRepositoryImpl.createRegisterByFiles(
-          device, image, file);
+          device, imageBin, fileBin);
     } catch (e) {
       throw CustomError(e.toString());
     }

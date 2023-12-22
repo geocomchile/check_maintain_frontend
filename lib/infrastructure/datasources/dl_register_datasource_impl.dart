@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:check_maintain_frontend/config/constants/enviroment.dart';
 import 'package:check_maintain_frontend/domain/datasources/dl_register_datasource.dart';
 import 'package:check_maintain_frontend/domain/entities/device.dart';
@@ -21,15 +23,14 @@ class DLRegisterDatasourceImpl extends DLRegisterDatasource {
 
   @override
   Future<void> createRegisterByFiles(
-      Device device, dynamic image, dynamic file) async {
+      Device device, Uint8List imageBin, Uint8List fileBin) async {
     try {
-      final imageBytes = await image.readAsBytes();
-      final fileBytes = file.bytes;
+
 
       final formData = FormData.fromMap({
         'device': device.id,
-        'image': MultipartFile.fromBytes(imageBytes, filename: 'image.png'),
-        'main_file': MultipartFile.fromBytes(fileBytes, filename: 'file.DAT'),
+        'image': MultipartFile.fromBytes(imageBin, filename: 'image.png'),
+        'main_file': MultipartFile.fromBytes(fileBin, filename: 'file.DAT'),
       });
 
       final response = await dio.post(

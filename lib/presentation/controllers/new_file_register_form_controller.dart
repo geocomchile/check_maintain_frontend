@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:check_maintain_frontend/domain/entities/device.dart';
 import 'package:check_maintain_frontend/presentation/controllers/dl_register_controller.dart';
 import 'package:get/get.dart';
@@ -5,22 +7,22 @@ import 'package:get/get.dart';
 class NewFileRegisterFormController extends GetxController{  
 
   final _device = Rxn<Device>();
-  final _image = Rxn<dynamic>();
-  final _file = Rxn<dynamic>();
+  final _image = Rxn<Uint8List>();
+  final _file = Rxn<Uint8List>();
 
   Device? get device => _device.value;
-  dynamic get image => _image.value;
-  dynamic get file => _file.value;
+  Uint8List? get image => _image.value;
+  Uint8List? get file => _file.value;
 
   void setDevice(Device device){
     _device.value = device;
   }
 
-  void setImage(dynamic image){
+  void setImage(Uint8List image){
     _image.value = image;
   }
 
-  void setFile(dynamic file){
+  void setFile(Uint8List file){
     _file.value = file;
   }
 
