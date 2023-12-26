@@ -54,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                 final device = deviceController.devices[index];
                 return GestureDetector(
                   onTap: () {
-                    context.go('/device/${device.id}');
+                    context.push('/device/${device.id}');
                   }
                   ,
                   child: DeviceCard(deviceName: device.modelName, serialNumber: device.serialNumber, model: device.modelName,));

@@ -38,6 +38,11 @@ const appMenuItems = <MenuItem>[
       icon: Icons.palette_outlined,
       url: '/colors'),
   MenuItem(
+      title: 'Example',
+      subtitle: 'Example Chart',
+      icon: Icons.graphic_eq,
+      url: '/example'),
+  MenuItem(
     title: 'Cerrar sesión',
     subtitle: 'Salir',
     icon: Icons.logout_outlined,

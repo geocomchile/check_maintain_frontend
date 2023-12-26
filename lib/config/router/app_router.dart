@@ -1,8 +1,11 @@
+
 import 'package:check_maintain_frontend/config/router/app_router_notifier.dart';
 import 'package:check_maintain_frontend/presentation/controllers/auth_controller.dart';
 import 'package:check_maintain_frontend/presentation/screens/device/device_screen.dart';
 import 'package:check_maintain_frontend/presentation/screens/screens.dart';
 import 'package:check_maintain_frontend/presentation/screens/settings/color_screen.dart';
+import 'package:check_maintain_frontend/presentation/screens/settings/example_screen.dart';
+import 'package:check_maintain_frontend/presentation/widgets/charts/example.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,7 +15,7 @@ final appRouterNotifier = AppRouterNotifier(authController);
 final appRouter = GoRouter(
   refreshListenable: appRouterNotifier,
   initialLocation: '/splash',
-      routes: [
+  routes: [
     GoRoute(
       path: '/splash',
       builder: (context, state) => const CheckAuthStatusScreen(),
@@ -55,7 +58,11 @@ final appRouter = GoRouter(
         final idDevice = state.pathParameters['idDevice'] ?? '';
         return DeviceScreen(idDevice: idDevice);
       },
-    )
+    ),
+    GoRoute(
+        path: '/example',
+        name: ExampleScreen.name,
+        builder: (context, state) =>  const ExampleScreen())
   ],
   redirect: (context, state) {
     final isGoingTo = state.matchedLocation;
