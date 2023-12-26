@@ -2,6 +2,7 @@ import 'package:check_maintain_frontend/config/router/app_router_notifier.dart';
 import 'package:check_maintain_frontend/presentation/controllers/auth_controller.dart';
 import 'package:check_maintain_frontend/presentation/screens/device/device_screen.dart';
 import 'package:check_maintain_frontend/presentation/screens/screens.dart';
+import 'package:check_maintain_frontend/presentation/screens/settings/color_screen.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
@@ -41,6 +42,11 @@ final appRouter = GoRouter(
       path: '/login',
       name: LoginScreen.name,
       builder: (context, state) => const LoginScreen(),
+    ),
+    GoRoute(
+      path: '/colors',
+      name: ColorScreen.name,
+      builder: (context, state) => ColorScreen(context: context),
     ),
     GoRoute(
       path: '/device/:idDevice',

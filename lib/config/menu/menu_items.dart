@@ -33,6 +33,11 @@ const appMenuItems = <MenuItem>[
     url: '/settings',
   ),
   MenuItem(
+      title: 'Colors',
+      subtitle: 'Example colors',
+      icon: Icons.palette_outlined,
+      url: '/colors'),
+  MenuItem(
     title: 'Cerrar sesión',
     subtitle: 'Salir',
     icon: Icons.logout_outlined,
