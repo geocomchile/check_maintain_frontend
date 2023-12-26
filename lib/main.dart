@@ -8,9 +8,11 @@ import 'package:check_maintain_frontend/presentation/controllers/dl_register_con
 import 'package:check_maintain_frontend/presentation/controllers/new_file_register_form_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 
 void main() async {
+  usePathUrlStrategy();
   await Environment.initEnvironment();
   Get.put(AuthController());
   Get.lazyPut(() => DeviceController());

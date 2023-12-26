@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:check_maintain_frontend/config/router/app_router.dart';
 import 'package:check_maintain_frontend/domain/entities/device.dart';
 import 'package:check_maintain_frontend/presentation/controllers/dl_register_controller.dart';
 import 'package:get/get.dart';
@@ -29,6 +30,7 @@ class NewFileRegisterFormController extends GetxController{
   Future<void> save() async{
     final dlRegisterController = Get.find<DLRegisterController>(); 
     await dlRegisterController.createRegisterByFiles(device!, image!, file!);
+    appRouter.go('/');
   }
 
   void cancel(){
