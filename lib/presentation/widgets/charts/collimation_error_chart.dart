@@ -13,10 +13,10 @@ class _CollimationErrorChartState extends State<CollimationErrorChart> {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final listSpot = [
-      FlSpot(DateTime(2023, 12, 24).millisecondsSinceEpoch.toDouble(), 1),
-      FlSpot(DateTime(2023, 12, 25).millisecondsSinceEpoch.toDouble(), 3),
-      FlSpot(DateTime(2023, 12, 26).millisecondsSinceEpoch.toDouble(), 10),
-      FlSpot(DateTime(2023, 12, 27).millisecondsSinceEpoch.toDouble(), 7),
+      FlSpot(DateTime(2023, 12, 24).millisecondsSinceEpoch.toDouble(), -1),
+      FlSpot(DateTime(2023, 12, 25).millisecondsSinceEpoch.toDouble(), -3),
+      FlSpot(DateTime(2023, 12, 26).millisecondsSinceEpoch.toDouble(), 1),
+      FlSpot(DateTime(2023, 12, 27).millisecondsSinceEpoch.toDouble(), -2),
     ];
 
     return Align(
@@ -86,38 +86,24 @@ class _LineChart extends StatelessWidget {
       padding: const EdgeInsets.all(20.0),
       child: LineChart(
         LineChartData(
-          gridData: const FlGridData(show: false),
-          titlesData: FlTitlesData(
-              show: true,
-              topTitles: const AxisTitles(),
-              bottomTitles: AxisTitles(
-                  sideTitles: SideTitles(
-                      reservedSize: 40,
-                      showTitles: true,
-                      getTitlesWidget: (value, meta) {
-                        if (listSpot.any((element) {
-                          print('value: $value --- element.x: ${element.x}');
-                          double tolerance = 1;
-                          if ((element.x - value).abs() < tolerance) {
-                            return true;
-                          } else {
-                            return false;
-                          }
-                        })) {
-                          var date = DateTime.fromMillisecondsSinceEpoch(
-                              value.toInt());
-                          return SideTitleWidget(
-                            axisSide: AxisSide.bottom,
-                            child:
-                                Text('${date.day}/${date.month}/${date.year}'),
-                          );
-                        } else {
-                          return const SideTitleWidget(
-                            axisSide: AxisSide.bottom,
-                            child: Text(''),
-                          );
-                        }
-                      }))),
+          gridData: const FlGridData(show: true),
+          titlesData:  FlTitlesData(
+            leftTitles : const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 40, getTitlesWidget: (value, meta) {
+              var day = DateTime.fromMillisecondsSinceEpoch(value.toInt()).day.toString();
+              return Text(
+                day,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                ),
+              );
+            },)),
+            topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            rightTitles:const AxisTitles(sideTitles: SideTitles(showTitles: false))
+            
+          ),
           borderData: FlBorderData(show: true),
           lineBarsData: [
             LineChartBarData(

@@ -5,7 +5,6 @@ import 'package:check_maintain_frontend/presentation/screens/device/device_scree
 import 'package:check_maintain_frontend/presentation/screens/screens.dart';
 import 'package:check_maintain_frontend/presentation/screens/settings/color_screen.dart';
 import 'package:check_maintain_frontend/presentation/screens/settings/example_screen.dart';
-import 'package:check_maintain_frontend/presentation/widgets/charts/example.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
