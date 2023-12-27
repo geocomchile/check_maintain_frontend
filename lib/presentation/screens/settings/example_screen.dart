@@ -1,5 +1,4 @@
-import 'package:check_maintain_frontend/presentation/widgets/charts/collimation_error_chart_2.dart';
-import 'package:check_maintain_frontend/presentation/widgets/charts/example.dart';
+import 'package:check_maintain_frontend/presentation/widgets/charts/collimation_error_chart.dart';
 import 'package:flutter/material.dart';
 
 class ExampleScreen extends StatelessWidget {
@@ -13,7 +12,7 @@ class ExampleScreen extends StatelessWidget {
         title: const Text('Example'),
       ),
       body: const Center(
-        child: CollimationErrorChart2(),
+        child: CollimationErrorChart(),
       ),
     );
   }
