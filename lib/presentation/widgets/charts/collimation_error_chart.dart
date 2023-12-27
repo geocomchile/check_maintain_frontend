@@ -25,7 +25,7 @@ class _CollimationErrorChartState extends State<CollimationErrorChart> {
             xValueMapper: (ChartData data, _) => data.x,
             yValueMapper: (ChartData data, _) => data.y,
             dataLabelSettings: const DataLabelSettings(isVisible: true),
-            color: colorScheme.onSurfaceVariant,
+            color: colorScheme.onPrimaryContainer,
           )
         ]);
   }
