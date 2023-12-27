@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:check_maintain_frontend/domain/entities/device.dart';
+import 'package:check_maintain_frontend/domain/entities/dl_register.dart';
 import 'package:check_maintain_frontend/domain/repositories/dl_register_repository.dart';
 import 'package:check_maintain_frontend/infrastructure/datasources/dl_register_datasource_impl.dart';
 import 'package:check_maintain_frontend/infrastructure/errors/auth_errors.dart';
@@ -24,6 +25,14 @@ class DLRegisterController extends GetxController {
     try {
       await _dlRegisterRepositoryImpl.createRegisterByFiles(
           device, imageBin, fileBin);
+    } catch (e) {
+      throw CustomError(e.toString());
+    }
+  }
+
+  Future<List<DlRegister>> getRegistersByDeviceId(String deviceId) async {
+    try {
+      return await _dlRegisterRepositoryImpl.getRegistersByDeviceId(deviceId);
     } catch (e) {
       throw CustomError(e.toString());
     }
