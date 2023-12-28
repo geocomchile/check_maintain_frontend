@@ -62,7 +62,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
               child: CircularProgressIndicator(color: colorScheme.onPrimaryContainer,),
             );
           } else {
-           return (indexBottomNavigationBar == 0) ?  CollimationErrorChart(registers: registers) : const Text('Lista');
+           return (indexBottomNavigationBar == 0) ?  _CollimationErrorChart(registers: registers) : const Text('Lista');
           }
   }(),
     ));
@@ -83,5 +83,71 @@ class _DeviceScreenState extends State<DeviceScreen> {
       this.registers = registers;
       this.device = device;
     });
+  }
+}
+
+class _CollimationErrorChart extends StatelessWidget {
+  const _CollimationErrorChart({
+    required this.registers,
+  });
+
+  final List<DlRegister> registers;
+
+  @override
+  Widget build(BuildContext context) {
+
+    final colorScheme = Theme.of(context).colorScheme;
+    
+    return Align(
+      alignment: Alignment.topCenter,
+      child: AspectRatio(
+        aspectRatio: 1.23,
+        child: Stack(
+          children: <Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                const SizedBox(
+                  height: 37,
+                ),
+                 Text(
+                  'Collimation Error',
+                  style: TextStyle(
+                    color: colorScheme.primary,
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 2,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 37,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 16, left: 6),
+                    child: CollimationErrorChart(registers: registers)
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+              ],
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.refresh,
+                color: colorScheme.primary,
+              ),
+              onPressed: () {
+      
+              },
+            )
+          ],
+        ),
+      ),
+    );
+    
+
   }
 }
