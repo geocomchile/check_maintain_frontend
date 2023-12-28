@@ -13,6 +13,31 @@ class CollimationErrorChart extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: SfCartesianChart(
+        trackballBehavior: TrackballBehavior(
+          activationMode: ActivationMode.singleTap,
+          builder: (context, trackballDetails) {
+            final date = DateFormat('dd/MM/yy').format(trackballDetails.point?.x ?? DateTime.now());
+            return Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.black),
+                borderRadius: const BorderRadius.all(Radius.circular(5)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Text(date ),
+              ));
+          },
+          markerSettings: TrackballMarkerSettings(
+            markerVisibility: TrackballVisibilityMode.visible,
+            width: 10,
+            height: 10,
+            color: colorScheme.onPrimaryContainer,
+            borderWidth: 2,
+            borderColor: colorScheme.onPrimaryContainer,
+          ),
+          enable: true),
+        
           backgroundColor: colorScheme.background,
           primaryXAxis: DateTimeAxis(
             dateFormat: DateFormat('dd/MM/yy'),
@@ -23,7 +48,7 @@ class CollimationErrorChart extends StatelessWidget {
               dataSource: _getColumData(registers),
               xValueMapper: (ChartData data, _) => data.x,
               yValueMapper: (ChartData data, _) => data.y,
-              dataLabelSettings: const DataLabelSettings(isVisible: true),
+              dataLabelSettings: const DataLabelSettings(isVisible: true, margin: EdgeInsets.symmetric(vertical: 4, horizontal: 2)),
               color: colorScheme.onPrimaryContainer,
             )
           ]),
