@@ -22,8 +22,22 @@ class DeviceDataSourceImpl extends DevicesDataSource {
   }
 
   @override
-  Future<Device> getDevice(String id) {
-    throw UnimplementedError();
+  Future<Device> getDevice(String id) async {
+    try {
+      final response = await dio.get('/device/$id/');
+      return DeviceMapper.deviceJsonToEntity(response.data);
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 403) {
+        throw CustomError(
+            e.response?.data['detail'] ?? 'Credenciales incorrectas');
+      }
+      if (e.type == DioExceptionType.connectionTimeout) {
+        throw CustomError('Revisar conexión a internet');
+      }
+      throw Exception();
+    } catch (e) {
+      throw CustomError('Error desconocido');
+    }
   }
 
   @override

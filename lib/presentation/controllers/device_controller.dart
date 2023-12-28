@@ -24,8 +24,16 @@ class DeviceController extends GetxController{
     }
   }
 
+  Future<Device> getDevice(String id) async{
+    try{
+      return await _devicesRepositoryImpl.getDevice(id);
+    }catch(e){
+      throw Exception();
+    }
 
-  }
+
+
+  }}
 
 
 
