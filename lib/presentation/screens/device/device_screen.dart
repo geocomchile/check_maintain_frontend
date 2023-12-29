@@ -3,6 +3,7 @@ import 'package:check_maintain_frontend/domain/entities/dl_register.dart';
 import 'package:check_maintain_frontend/presentation/controllers/device_controller.dart';
 import 'package:check_maintain_frontend/presentation/controllers/dl_register_controller.dart';
 import 'package:check_maintain_frontend/presentation/widgets/charts/collimation_error_chart.dart';
+import 'package:check_maintain_frontend/presentation/widgets/tables/dl_registers_table.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -62,7 +63,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
               child: CircularProgressIndicator(color: colorScheme.onPrimaryContainer,),
             );
           } else {
-           return (indexBottomNavigationBar == 0) ?  _CollimationErrorChart(registers: registers) : const Text('Lista');
+           return (indexBottomNavigationBar == 0) ?  CollimationErrorChart(registers: registers) :  DlRegistersTable(registers: registers,);
           }
   }(),
     ));
@@ -113,8 +114,8 @@ class _CollimationErrorChart extends StatelessWidget {
                  Text(
                   'Collimation Error',
                   style: TextStyle(
-                    color: colorScheme.primary,
-                    fontSize: 32,
+                    color: colorScheme.onPrimaryContainer,
+                    fontSize: 24,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 2,
                   ),
@@ -137,7 +138,7 @@ class _CollimationErrorChart extends StatelessWidget {
             IconButton(
               icon: Icon(
                 Icons.refresh,
-                color: colorScheme.primary,
+                color: colorScheme.onPrimaryContainer,
               ),
               onPressed: () {
       
