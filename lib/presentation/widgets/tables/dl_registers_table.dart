@@ -107,8 +107,8 @@ class RegistersDataSource extends DataGridSource {
       return Container(
         alignment: (dataGridCell.columnName == 'dateError' ||
                 dataGridCell.columnName == 'created')
-            ? Alignment.centerRight
-            : Alignment.centerLeft,
+            ? Alignment.center
+            : Alignment.center,
         padding: const EdgeInsets.all(16.0),
         child: (dataGridCell.columnName == 'dateError' ||
                 dataGridCell.columnName == 'created') 
