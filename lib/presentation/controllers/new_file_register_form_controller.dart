@@ -5,47 +5,43 @@ import 'package:check_maintain_frontend/domain/entities/device.dart';
 import 'package:check_maintain_frontend/presentation/controllers/dl_register_controller.dart';
 import 'package:get/get.dart';
 
-class NewFileRegisterFormController extends GetxController{  
+class NewFileRegisterFormController extends GetxController {
+  final device = Rxn<Device>();
+  final image = Rxn<Uint8List>();
+  final file = Rxn<Uint8List>();
 
-  final _device = Rxn<Device>();
-  final _image = Rxn<Uint8List>();
-  final _file = Rxn<Uint8List>();
-
-  Device? get device => _device.value;
-  Uint8List? get image => _image.value;
-  Uint8List? get file => _file.value;
-
-  void setDevice(Device device){
-    _device.value = device;
+  void setDevice(Device device) {
+    this.device.value = device;
   }
 
-  void setImage(Uint8List image){
-    _image.value = image;
+  void setImage(Uint8List image) {
+    this.image.value = image;
   }
 
-  void setFile(Uint8List file){
-    _file.value = file;
+  void setFile(Uint8List file) {
+    this.file.value = file;
   }
 
-  Future<void> save() async{
-    final dlRegisterController = Get.find<DLRegisterController>(); 
-    await dlRegisterController.createRegisterByFiles(device!, image!, file!);
+  Future<void> save() async {
+    final dlRegisterController = Get.find<DLRegisterController>();
+    await dlRegisterController.createRegisterByFiles(
+        device.value!, image.value!, file.value!);
     appRouter.go('/');
   }
 
-  void cancel(){
+  void cancel() {
     print('cancel');
   }
-  void reset(){
-    _device.value = null;
-    _image.value = null;
-    _file.value = null;
+
+  void reset() {
+    device.value = null;
+    image.value = null;
+    file.value = null;
   }
 
-  void printResult(){
-    print('device: ${_device.value.runtimeType}');
-    print('image: ${_image.value.runtimeType}');
-    print('file: ${_file.value.runtimeType}');
+  void printResult() {
+    print('device: ${device.value.runtimeType}');
+    print('image: ${image.value.runtimeType}');
+    print('file: ${file.value.runtimeType}');
   }
-
 }

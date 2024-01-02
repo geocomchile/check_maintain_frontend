@@ -19,7 +19,7 @@ class _DeviceSelectorWidgetState extends State<DeviceSelectorWidget> {
   void initState() {
     super.initState();
     final formController = Get.find<NewFileRegisterFormController>();
-    selectedDevice = formController.device;
+    selectedDevice = formController.device.value;
   }
 
   @override
