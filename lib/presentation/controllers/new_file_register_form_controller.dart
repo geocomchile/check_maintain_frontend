@@ -9,17 +9,28 @@ class NewFileRegisterFormController extends GetxController {
   final device = Rxn<Device>();
   final image = Rxn<Uint8List>();
   final file = Rxn<Uint8List>();
+  final isChecked = false.obs;
 
   void setDevice(Device device) {
     this.device.value = device;
+    check();
+
   }
 
   void setImage(Uint8List image) {
     this.image.value = image;
+    check();
   }
 
   void setFile(Uint8List file) {
     this.file.value = file;
+    check();
+  }
+
+   check() async {
+    if (device.value != null && image.value != null && file.value != null) {
+      isChecked.value = true;
+    }
   }
 
   Future<void> save() async {
@@ -34,9 +45,9 @@ class NewFileRegisterFormController extends GetxController {
   }
 
   void reset() {
-    device.value = null;
     image.value = null;
     file.value = null;
+    isChecked.value = false;
   }
 
   void printResult() {

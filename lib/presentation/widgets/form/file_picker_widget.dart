@@ -31,6 +31,18 @@ class _FilePickerWidgetState extends State<FilePickerWidget> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    final formController = Get.find<NewFileRegisterFormController>();
+    if (formController.file.value ==null) {
+      _selectedFile = null;
+      _fileName = null;
+    } else {
+      _selectedFile = formController.file.value;
+      _fileName = 'Archivo seleccionado';
+    }}
+    
+  @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     return InkWell(
