@@ -27,8 +27,29 @@ class _DlRegisterDetailState extends State<DlRegisterDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Dl Register ${dlRegister?.id}')),
-    );
+        appBar: AppBar(title: Text('Dl Register ${dlRegister?.id}')),
+        body: (dlRegister != null ) ? Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Collimation Error: ${dlRegister?.collimationError}'),
+              Text('Error Date: ${dlRegister?.dateError}'),
+              Text('Created: ${dlRegister?.created}'),
+              Expanded(
+                  child: Image.network(
+                dlRegister?.image ?? '',
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+                errorBuilder: (context, error, stackTrace) =>
+                    const Text('Error')),
+              ),
+            ],
+          ),
+        ): const Center(child: CircularProgressIndicator()));
   }
 
   Future<void> _loadData() async {
