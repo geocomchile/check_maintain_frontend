@@ -111,10 +111,8 @@ class DLRegisterDatasourceImpl extends DLRegisterDatasource {
       if (e.type == DioExceptionType.connectionTimeout) {
         throw CustomError('Revisar conexión a internet');
       }
-            if (e.response?.statusCode == 404) {
-              print('hola 404');
-        throw CustomError(
-            e.response?.data['error'] ?? '404 Not Found');
+      if (e.response?.statusCode == 404) {
+        throw CustomError(e.response?.data['error'] ?? '404 Not Found');
       }
 
       throw Exception();
