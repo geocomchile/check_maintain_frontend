@@ -18,10 +18,10 @@ class DeviceScreen extends StatefulWidget {
 }
 
 class _DeviceScreenState extends State<DeviceScreen> {
+  final dlRegisterController = Get.find<DLRegisterController>();
 
-  
-  int indexBottomNavigationBar = 0;
   bool isLoading = true;
+  late int indexBottomNavigationBar;
   Device? device;
   List<DlRegister> registers = [];
 
@@ -29,6 +29,10 @@ class _DeviceScreenState extends State<DeviceScreen> {
   void initState() {
     super.initState();
     _loadData();
+    indexBottomNavigationBar = dlRegisterController.indexBottomNavigationBar.value;
+
+
+
   }
 
   @override

@@ -61,7 +61,17 @@ final appRouter = GoRouter(
     GoRoute(
         path: '/example',
         name: ExampleScreen.name,
-        builder: (context, state) =>  const ExampleScreen())
+        builder: (context, state) =>  const ExampleScreen()
+        ),
+
+    GoRoute(
+      path: '/dl-register/:idRegister',
+      name: DlRegisterDetail.name,
+      builder: (context, state) {
+        final idRegister = state.pathParameters['idRegister'] ?? '';
+        return DlRegisterDetail(idRegister: idRegister);
+      },
+    )
   ],
   redirect: (context, state) {
     final isGoingTo = state.matchedLocation;

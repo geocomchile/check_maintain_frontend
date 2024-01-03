@@ -73,4 +73,47 @@ class DLRegisterDatasourceImpl extends DLRegisterDatasource {
     } catch (e) {
       rethrow;
     }
-  }}
+  }
+
+  @override
+  Future<void> deleteRegisterById(String id) async {
+    try {
+      final response = await dio.delete('/dl-register/$id');
+
+      print(response.statusCode);
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 400) {
+        throw CustomError(
+            e.response?.data['error'] ?? 'Invalid or missing token');
+      }
+      if (e.type == DioExceptionType.connectionTimeout) {
+        throw CustomError('Revisar conexión a internet');
+      }
+      throw Exception();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<DlRegister> getRegisterById(String id) async {
+    try {
+      final response = await dio.get('/dl-register/$id');
+
+      final dlRegister = DlRegisterMapper.dlRegisterJsonToEntity(response.data);
+
+      return dlRegister;
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 400) {
+        throw CustomError(
+            e.response?.data['error'] ?? 'Invalid or missing token');
+      }
+      if (e.type == DioExceptionType.connectionTimeout) {
+        throw CustomError('Revisar conexión a internet');
+      }
+      throw Exception();
+    } catch (e) {
+      rethrow;
+    }
+  }
+}

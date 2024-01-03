@@ -20,4 +20,14 @@ class DLRegisterRepositoryImpl extends DLRegisterRepository {
   Future<List<DlRegister>> getRegistersByDeviceId(String deviceId) async {
     return await dataSource.getRegistersByDeviceId(deviceId);
   }
+  
+  @override
+  Future<void> deleteRegisterById(String id) {
+    return dataSource.deleteRegisterById(id);
+  }
+  
+  @override
+  Future<DlRegister> getRegisterById(String id) {
+    return dataSource.getRegisterById(id);
+  }
 }

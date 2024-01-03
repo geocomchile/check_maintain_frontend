@@ -12,6 +12,8 @@ import 'package:get/get.dart';
 class DLRegisterController extends GetxController {
   late final String token;
   late final DLRegisterRepository _dlRegisterRepositoryImpl;
+  var indexBottomNavigationBar = 0.obs;
+  
 
   DLRegisterController() {
     final authController = Get.find<AuthController>();
@@ -36,5 +38,14 @@ class DLRegisterController extends GetxController {
     } catch (e) {
       throw CustomError(e.toString());
     }
+  }
+
+  Future<DlRegister> getRegisterById(String idRegister) async{
+        try {
+      return await _dlRegisterRepositoryImpl.getRegisterById(idRegister);
+    } catch (e) {
+      throw CustomError(e.toString());
+    }
+
   }
 }

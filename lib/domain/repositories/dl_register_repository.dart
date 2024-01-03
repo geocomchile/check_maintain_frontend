@@ -7,4 +7,8 @@ abstract class DLRegisterRepository {
   Future<void> createRegisterByFiles(
       Device device, Uint8List imageBin, Uint8List fileBin);
   Future<List<DlRegister>> getRegistersByDeviceId(String deviceId);
+
+  Future<void> deleteRegisterById(String id);
+
+  Future<DlRegister> getRegisterById(String id);
 }
