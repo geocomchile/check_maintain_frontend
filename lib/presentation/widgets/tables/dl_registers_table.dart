@@ -63,7 +63,7 @@ class _DlRegistersTableState extends State<DlRegistersTable> {
                 alignment: Alignment.center,
                 child: Text(
                   style: TextStyle(color: colorScheme.onPrimaryContainer),
-                  'Error',
+                  'Error (DMS)',
                 ))),
         GridColumn(
             columnName: 'dateError',
@@ -71,7 +71,7 @@ class _DlRegistersTableState extends State<DlRegistersTable> {
                 padding: const EdgeInsets.all(8.0),
                 alignment: Alignment.center,
                 child: Text(
-                  'Error Date',
+                  'Fecha del error',
                   style: TextStyle(color: colorScheme.onPrimaryContainer),
                 ))),
         GridColumn(
@@ -81,7 +81,7 @@ class _DlRegistersTableState extends State<DlRegistersTable> {
                 alignment: Alignment.center,
                 child: Text(
                   style: TextStyle(color: colorScheme.onPrimaryContainer),
-                  'Date',
+                  'Creado',
                   overflow: TextOverflow.ellipsis,
                 ))),
       ],

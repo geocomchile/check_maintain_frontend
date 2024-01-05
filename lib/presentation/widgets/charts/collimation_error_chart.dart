@@ -13,6 +13,7 @@ class CollimationErrorChart extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: SfCartesianChart(
+        title: const ChartTitle(text: 'Error de colimación'),
         trackballBehavior: TrackballBehavior(
           activationMode: ActivationMode.singleTap,
           builder: (context, trackballDetails) {
@@ -42,9 +43,10 @@ class CollimationErrorChart extends StatelessWidget {
           primaryXAxis: DateTimeAxis(
             dateFormat: DateFormat('dd/MM/yy'),
           ),
-          primaryYAxis: const NumericAxis(),
+          primaryYAxis: const NumericAxis(title: AxisTitle(text: 'Error (DMS)'),),
           series: [
             LineSeries<ChartData, DateTime>(
+              animationDuration: 300,
               dataSource: _getColumData(registers),
               xValueMapper: (ChartData data, _) => data.x,
               yValueMapper: (ChartData data, _) => data.y,
