@@ -1,5 +1,6 @@
 import 'package:check_maintain_frontend/domain/entities/dl_register.dart';
 import 'package:check_maintain_frontend/presentation/controllers/dl_register_controller.dart';
+import 'package:check_maintain_frontend/presentation/widgets/share/confirm_delete_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -49,7 +50,10 @@ class _DlRegisterDetailState extends State<DlRegisterDetail> {
                     const Text('Error')),
               ),
               ElevatedButton.icon(onPressed: (){
-                dlRegisterController.deleteRegisterById(widget.idRegister);
+                // dlRegisterController.deleteRegisterById(widget.idRegister);
+                showDeleteConfirmation(context, () {
+                  dlRegisterController.deleteRegisterById(widget.idRegister);
+                });
 
               }, icon: const Icon(Icons.delete), label: const Text('Delete'))
             ],
