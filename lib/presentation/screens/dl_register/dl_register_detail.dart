@@ -17,6 +17,7 @@ class DlRegisterDetail extends StatefulWidget {
 
 class _DlRegisterDetailState extends State<DlRegisterDetail> {
   DlRegister? dlRegister;
+  final dlRegisterController = Get.find<DLRegisterController>();
 
   @override
   void initState() {
@@ -47,6 +48,10 @@ class _DlRegisterDetailState extends State<DlRegisterDetail> {
                 errorBuilder: (context, error, stackTrace) =>
                     const Text('Error')),
               ),
+              ElevatedButton.icon(onPressed: (){
+                dlRegisterController.deleteRegisterById(widget.idRegister);
+
+              }, icon: const Icon(Icons.delete), label: const Text('Delete'))
             ],
           ),
         ): const Center(child: CircularProgressIndicator()));

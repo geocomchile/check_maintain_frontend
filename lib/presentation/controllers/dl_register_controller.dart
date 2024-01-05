@@ -8,6 +8,7 @@ import 'package:check_maintain_frontend/infrastructure/errors/auth_errors.dart';
 import 'package:check_maintain_frontend/infrastructure/repositories/dl_register_repository_impl.dart';
 import 'package:check_maintain_frontend/presentation/controllers/auth_controller.dart';
 import 'package:get/get.dart';
+import 'package:check_maintain_frontend/config/router/app_router.dart';
 
 class DLRegisterController extends GetxController {
   late final String token;
@@ -27,6 +28,15 @@ class DLRegisterController extends GetxController {
     try {
       await _dlRegisterRepositoryImpl.createRegisterByFiles(
           device, imageBin, fileBin);
+    } catch (e) {
+      throw CustomError(e.toString());
+    }
+  }
+
+  Future<void> deleteRegisterById(String idRegister) async {
+    try {
+      await _dlRegisterRepositoryImpl.deleteRegisterById(idRegister);
+      appRouter.go('/');
     } catch (e) {
       throw CustomError(e.toString());
     }

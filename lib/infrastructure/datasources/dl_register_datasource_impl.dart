@@ -78,9 +78,8 @@ class DLRegisterDatasourceImpl extends DLRegisterDatasource {
   @override
   Future<void> deleteRegisterById(String id) async {
     try {
-      final response = await dio.delete('/dl-register/$id');
+      await dio.delete('/dl-register/$id');
 
-      print(response.statusCode);
     } on DioException catch (e) {
       if (e.response?.statusCode == 400) {
         throw CustomError(
