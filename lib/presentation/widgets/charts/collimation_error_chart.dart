@@ -6,13 +6,15 @@ import 'package:intl/intl.dart';
 class CollimationErrorChart extends StatelessWidget {
   final List<DlRegister> registers;
   const CollimationErrorChart({super.key, required this.registers});
+  
 
   @override
   Widget build(BuildContext context) {
+    final data = _getColumData(registers);
     final colorScheme = Theme.of(context).colorScheme;
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: SfCartesianChart(
+      child: data.isNotEmpty ? SfCartesianChart(
         title: const ChartTitle(text: 'Error de colimación'),
         trackballBehavior: TrackballBehavior(
           activationMode: ActivationMode.singleTap,
@@ -47,13 +49,13 @@ class CollimationErrorChart extends StatelessWidget {
           series: [
             LineSeries<ChartData, DateTime>(
               animationDuration: 300,
-              dataSource: _getColumData(registers),
+              dataSource: data,
               xValueMapper: (ChartData data, _) => data.x,
               yValueMapper: (ChartData data, _) => data.y,
               dataLabelSettings: const DataLabelSettings(isVisible: true, margin: EdgeInsets.symmetric(vertical: 4, horizontal: 2)),
               color: colorScheme.onPrimaryContainer,
             )
-          ]),
+          ]): const Center(child: Text('No hay datos')),
     );
   }
 }

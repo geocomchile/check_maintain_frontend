@@ -47,6 +47,11 @@ class _DlRegistersTableState extends State<DlRegistersTable> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    if (_registers.isEmpty) {
+    return const Center(
+      child: Text('No hay datos'),
+    );
+  } else {
     return SfDataGrid(
       onCellTap: (details) {
         final row = details.rowColumnIndex.rowIndex;
@@ -87,7 +92,7 @@ class _DlRegistersTableState extends State<DlRegistersTable> {
       ],
     );
   }
-}
+}}
 
 class RegistersDataSource extends DataGridSource {
   RegistersDataSource({required List<DlRegisterTableInfo> registers}) {
