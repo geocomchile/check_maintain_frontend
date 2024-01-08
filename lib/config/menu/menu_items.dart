@@ -32,16 +32,16 @@ const appMenuItems = <MenuItem>[
     icon: Icons.settings_outlined,
     url: '/settings',
   ),
-  MenuItem(
-      title: 'Colors',
-      subtitle: 'Example colors',
-      icon: Icons.palette_outlined,
-      url: '/colors'),
-  MenuItem(
-      title: 'Example',
-      subtitle: 'Example Chart',
-      icon: Icons.graphic_eq,
-      url: '/example'),
+  // MenuItem(
+  //     title: 'Colors',
+  //     subtitle: 'Example colors',
+  //     icon: Icons.palette_outlined,
+  //     url: '/colors'),
+  // MenuItem(
+  //     title: 'Example',
+  //     subtitle: 'Example Chart',
+  //     icon: Icons.graphic_eq,
+  //     url: '/example'),
   MenuItem(
     title: 'Cerrar sesión',
     subtitle: 'Salir',
