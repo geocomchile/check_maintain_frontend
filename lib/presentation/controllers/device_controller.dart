@@ -1,11 +1,13 @@
 import 'package:check_maintain_frontend/domain/entities/device.dart';
 import 'package:check_maintain_frontend/infrastructure/datasources/device_datasource_impl.dart';
+import 'package:check_maintain_frontend/infrastructure/errors/auth_errors.dart';
 import 'package:check_maintain_frontend/infrastructure/repositories/device_repository_impl.dart';
 import 'package:check_maintain_frontend/presentation/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 
 class DeviceController extends GetxController{
   late final String token;
+  var errorMessage = Rxn<String>();
   final devices = List<Device>.empty().obs;
   late final DevicesRepositoryImpl _devicesRepositoryImpl;
 
@@ -19,21 +21,20 @@ class DeviceController extends GetxController{
     try{
       final devices = await _devicesRepositoryImpl.getDevices();
       this.devices.value = devices;
-    }catch(e){
-      throw Exception();
-    }
-  }
+    }on CustomError catch(e){
+      errorMessage.value = e.message;
+  }}
 
   Future<Device> getDevice(String id) async{
     try{
       return await _devicesRepositoryImpl.getDevice(id);
-    }catch(e){
-      throw Exception();
-    }
+    }on CustomError catch(e){
+      errorMessage.value = e.message;
+      rethrow;
 
 
 
-  }}
+  }}}
 
 
 

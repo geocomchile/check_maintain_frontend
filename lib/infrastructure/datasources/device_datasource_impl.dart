@@ -34,6 +34,9 @@ class DeviceDataSourceImpl extends DevicesDataSource {
       if (e.type == DioExceptionType.connectionTimeout) {
         throw CustomError('Revisar conexión a internet');
       }
+      if (e.type == DioExceptionType.connectionError) {
+        throw CustomError(e.response?.data['detail'] ?? 'Error desconocido');
+      }
       throw Exception();
     } catch (e) {
       throw CustomError('Error desconocido');

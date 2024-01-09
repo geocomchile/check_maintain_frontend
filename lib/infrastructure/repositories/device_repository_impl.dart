@@ -9,11 +9,11 @@ class DevicesRepositoryImpl extends DevicesRepository {
 
   @override
   Future<Device> getDevice(String id) async {
-    return await dataSource.getDevice(id);
+    return dataSource.getDevice(id);
   }
 
   @override
   Future<List<Device>> getDevices() async {
-    return await dataSource.getDevices();
+    return dataSource.getDevices();
   }
 }

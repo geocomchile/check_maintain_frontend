@@ -29,65 +29,85 @@ class _DeviceScreenState extends State<DeviceScreen> {
   void initState() {
     super.initState();
     _loadData();
-    indexBottomNavigationBar = dlRegisterController.indexBottomNavigationBar.value;
-
-
-
+    indexBottomNavigationBar =
+        dlRegisterController.indexBottomNavigationBar.value;
   }
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: colorScheme.onPrimaryContainer,
-        onTap: (index) => setState(() {
-          indexBottomNavigationBar = index;
-        }),
-        currentIndex: indexBottomNavigationBar,
-        items:  const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.area_chart_outlined),
-            label: 'Grafico',
-          ),
-           BottomNavigationBarItem(
-            icon: Icon(Icons.table_rows_outlined),
-            label: 'Registros',
-          ),
-        ],
-      ),
-      appBar: AppBar(
-        title: Text('Device ${device?.serialNumber ?? ''}'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: (){
-          if (isLoading) {
-            return Center(
-              child: CircularProgressIndicator(color: colorScheme.onPrimaryContainer,),
-            );
-          } else {
-           return (indexBottomNavigationBar == 0) ?  CollimationErrorChart(registers: registers) :  DlRegistersTable(registers: registers,);
-          }
-  }(),
-    ));
+        bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: colorScheme.onPrimaryContainer,
+          onTap: (index) => setState(() {
+            indexBottomNavigationBar = index;
+          }),
+          currentIndex: indexBottomNavigationBar,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.area_chart_outlined),
+              label: 'Grafico',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.table_rows_outlined),
+              label: 'Registros',
+            ),
+          ],
+        ),
+        appBar: AppBar(
+          title: Text('Device ${device?.serialNumber ?? ''}'),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: () {
+            final DeviceController deviceController =
+                Get.find<DeviceController>();
+            if (isLoading) {
+              return Center(
+                child: CircularProgressIndicator(
+                  color: colorScheme.onPrimaryContainer,
+                ),
+              );
+            }
+
+            if (deviceController.errorMessage.value != null) {
+              return Center(
+                child: Text(deviceController.errorMessage.value!),
+              );
+            } else {
+              return (indexBottomNavigationBar == 0)
+                  ? CollimationErrorChart(registers: registers)
+                  : DlRegistersTable(
+                      registers: registers,
+                    );
+            }
+          }(),
+        ));
   }
 
   Future<void> _loadData() async {
     final dlRegisterController = Get.find<DLRegisterController>();
     final DeviceController deviceController = Get.find<DeviceController>();
-    // get device data
-    var device = await deviceController.getDevice(widget.idDevice);
-    // get device registers
-    var registers = await  dlRegisterController.getRegistersByDeviceId(widget.idDevice);
+    try {
+      // get device
+      var device = await deviceController.getDevice(widget.idDevice);
+      // get device registers
+      var registers =
+          await dlRegisterController.getRegistersByDeviceId(widget.idDevice);
 
-    await Future.delayed(const Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 300));
+      deviceController.errorMessage.value = null;
 
-    setState(() {
-      isLoading = false;
-      this.registers = registers;
-      this.device = device;
-    });
+      setState(() {
+        isLoading = false;
+        this.registers = registers;
+        this.device = device;
+      });
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 }
 
@@ -100,9 +120,8 @@ class _CollimationErrorChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final colorScheme = Theme.of(context).colorScheme;
-    
+
     return Align(
       alignment: Alignment.topCenter,
       child: AspectRatio(
@@ -115,7 +134,7 @@ class _CollimationErrorChart extends StatelessWidget {
                 const SizedBox(
                   height: 37,
                 ),
-                 Text(
+                Text(
                   'Collimation Error',
                   style: TextStyle(
                     color: colorScheme.onPrimaryContainer,
@@ -130,9 +149,8 @@ class _CollimationErrorChart extends StatelessWidget {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 16, left: 6),
-                    child: CollimationErrorChart(registers: registers)
-                  ),
+                      padding: const EdgeInsets.only(right: 16, left: 6),
+                      child: CollimationErrorChart(registers: registers)),
                 ),
                 const SizedBox(
                   height: 10,
@@ -144,15 +162,11 @@ class _CollimationErrorChart extends StatelessWidget {
                 Icons.refresh,
                 color: colorScheme.onPrimaryContainer,
               ),
-              onPressed: () {
-      
-              },
+              onPressed: () {},
             )
           ],
         ),
       ),
     );
-    
-
   }
 }
