@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 import 'package:check_maintain_frontend/presentation/controllers/new_file_register_form_controller.dart';
 import 'package:file_picker/file_picker.dart';
@@ -18,14 +19,25 @@ class _FilePickerWidgetState extends State<FilePickerWidget> {
   Future<void> _pickFile() async {
     final formController = Get.find<NewFileRegisterFormController>();
     FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['DAT'],
+      type: FileType.any,
+
     );
     if (result != null) {
+       Uint8List bytes;
+      try {
+        bytes = result.files.first.bytes!;
+      } catch (e) {
+        bytes = await File(result.files.first.path!).readAsBytes();
+      }
+
+
       setState(() {
-        _selectedFile = result.files.first.bytes!;
+
+        _selectedFile = bytes;
         _fileName = result.files.first.name;
         formController.setFile(_selectedFile!);
+
+
       });
     }
   }
