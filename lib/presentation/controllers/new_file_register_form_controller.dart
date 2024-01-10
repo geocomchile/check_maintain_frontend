@@ -23,11 +23,11 @@ class NewFileRegisterFormController extends GetxController {
   }
 
   void setFile(Uint8List file) {
-    this.file.value = file;
+        this.file.value = file;
     check();
   }
 
-   check() async {
+  check() async {
     if (device.value != null && image.value != null && file.value != null) {
       isChecked.value = true;
     }
@@ -42,6 +42,16 @@ class NewFileRegisterFormController extends GetxController {
 
   void cancel() {
     print('cancel');
+  }
+
+  void resetFile() {
+    file.value = null;
+    isChecked.value = false;
+  }
+
+  void resetImage() {
+    image.value = null;
+    isChecked.value = false;
   }
 
   void reset() {
