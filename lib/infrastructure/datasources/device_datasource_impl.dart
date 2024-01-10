@@ -24,7 +24,7 @@ class DeviceDataSourceImpl extends DevicesDataSource {
   @override
   Future<Device> getDevice(String id) async {
     try {
-      final response = await dio.get('/device/$id/');
+      final response = await dio.get('/device/$id');
       return DeviceMapper.deviceJsonToEntity(response.data);
     } on DioException catch (e) {
       if (e.response?.statusCode == 403) {
@@ -47,7 +47,7 @@ class DeviceDataSourceImpl extends DevicesDataSource {
   Future<List<Device>> getDevices() async {
     try {
 
-      final response = await dio.get('/devices/');
+      final response = await dio.get('/devices');
       final devices = response.data as List;
       return devices.map((device) => DeviceMapper.deviceJsonToEntity(device)).toList();
 

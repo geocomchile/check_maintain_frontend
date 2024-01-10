@@ -42,7 +42,7 @@ class AuthDataSourceImpl extends AuthDataSource {
   Future<User> login(String username, String password) async {
     try {
       final response = await dio.post(
-        '/api-token-auth/',
+        '/api-token-auth',
         data: {
           'username': username,
           'password': password,
