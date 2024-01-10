@@ -6,7 +6,7 @@ import 'package:check_maintain_frontend/presentation/controllers/dl_register_con
 import 'package:get/get.dart';
 
 class NewFileRegisterFormController extends GetxController {
-  final device = Rxn<Device>();
+  var device = Rxn<Device>();
   final image = Rxn<Uint8List>();
   final file = Rxn<Uint8List>();
   final isChecked = false.obs;
@@ -58,7 +58,7 @@ class NewFileRegisterFormController extends GetxController {
     image.value = null;
     file.value = null;
     isChecked.value = false;
-  }
+      }
 
   void printResult() {
     print('device: ${device.value.runtimeType}');

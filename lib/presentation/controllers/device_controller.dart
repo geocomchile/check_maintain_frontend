@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 class DeviceController extends GetxController{
   late final String token;
   var errorMessage = Rxn<String>();
-  final devices = List<Device>.empty().obs;
+  var devices = <Device>[].obs;
   late final DevicesRepositoryImpl _devicesRepositoryImpl;
 
   DeviceController(){

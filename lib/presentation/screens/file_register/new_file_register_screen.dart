@@ -1,4 +1,5 @@
 
+import 'package:check_maintain_frontend/domain/entities/device.dart';
 import 'package:check_maintain_frontend/presentation/controllers/device_controller.dart';
 import 'package:check_maintain_frontend/presentation/controllers/new_file_register_form_controller.dart';
 import 'package:check_maintain_frontend/presentation/widgets/form/device_selector_widget.dart';
@@ -18,11 +19,21 @@ class NewFileRegisterScreen extends StatefulWidget {
 
 class _NewFileRegisterScreenState extends State<NewFileRegisterScreen> {
 
-
+  List<Device> devices = [];
 
   @override
   void initState() {
     super.initState();
+    _getDevices();
+
+  }
+
+  void _getDevices () async {
+    final deviceController = Get.find<DeviceController>();
+    await deviceController.getDevices();
+    setState(() {
+      devices = deviceController.devices;
+    });
 
   }
 
@@ -35,7 +46,6 @@ class _NewFileRegisterScreenState extends State<NewFileRegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final devices = Get.find<DeviceController>().devices;
     final formController = Get.find<NewFileRegisterFormController>();
 
     return Scaffold(
