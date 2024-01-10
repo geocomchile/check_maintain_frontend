@@ -53,7 +53,7 @@ void initState() {
           )),
       // focusColor: Colors.green,
       // iconEnabledColor: Colors.green,
-      value: devices[index ?? 0],
+      value: (index != null) ? devices[index!] : null,
       hint: const Text('Selecciona un dispositivo'),
       onChanged: (Device? newValue) {
         setState(() {
