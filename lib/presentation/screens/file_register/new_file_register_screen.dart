@@ -42,30 +42,39 @@ class _NewFileRegisterScreenState extends State<NewFileRegisterScreen> {
       appBar: AppBar(
         title: const Text('New File Register'),
       ),
-      body: Column(children: [
-        Row(children: [
-          Expanded(
-              child: DeviceSelectorWidget(
-            devices: devices,
-          ))
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(children: [
+          
+          Row(children: [
+            Expanded(
+                child: DeviceSelectorWidget(
+              devices: devices,
+            ))
+          ]),
+          const SizedBox(height: 20,),
+          const Row(children: [Expanded(child: ImagePickerWidget())]),
+          const SizedBox(height: 20,),
+          const Row(children: [Expanded(child: FilePickerWidget())]),
+          const SizedBox(height: 20,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+            Obx(() => ElevatedButton.icon(
+                label: const Text('Guardar'), icon: const Icon(Icons.save_outlined), onPressed: formController.isChecked.value ? () {
+                  formController.save();
+        
+                }: null)),
+            const SizedBox(width: 60),
+            ElevatedButton.icon(
+                label: const Text('Cancelar'), icon: const Icon(Icons.cancel_outlined), onPressed: () {
+                  formController.reset();
+                  context.go('/');
+        
+                }),
+          ]),
         ]),
-        const Row(children: [Expanded(child: ImagePickerWidget())]),
-        const Row(children: [Expanded(child: FilePickerWidget())]),
-        Row(children: [
-          Obx(() => ElevatedButton.icon(
-              label: const Text('Guardar'), icon: const Icon(Icons.save_outlined), onPressed: formController.isChecked.value ? () {
-                formController.save();
-
-              }: null)),
-          const SizedBox(width: 10),
-          ElevatedButton.icon(
-              label: const Text('Cancelar'), icon: const Icon(Icons.cancel_outlined), onPressed: () {
-                formController.reset();
-                context.go('/');
-
-              }),
-        ]),
-      ]),
+      ),
     );
   }
 }

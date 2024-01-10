@@ -34,24 +34,74 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
-    return InkWell(
-      onTap: () {
-        _pickImage();
-      },
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: colors.surface,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: colors.onSurface.withOpacity(0.12),
-          ),
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colors.surface,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: colors.onSurface.withOpacity(0.2),
         ),
-        child: const SizedBox(
-          width: double.infinity,
-          height: 200,
-          child: Center(
-            child: Text('Selecciona una imagen'),
-          ),
+      ),
+      child: SizedBox(
+        width: double.infinity,
+        height: 200,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            // Muestra la imagen seleccionada
+            if (_selectedImage != null)
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.memory(
+                  _selectedImage!,
+                  width: double.infinity,
+                  height: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+              ),
+
+            // Muestra el texto y el botón
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: (_selectedImage == null)
+                  ? [
+                      const Text('Sube una imagen'),
+                      IconButton(
+                        onPressed: _pickImage,
+                        icon: Icon(Icons.add_a_photo,
+                            size: 30, color: colors.onSurface.withOpacity(0.7)),
+                      )
+                    ]
+                  : [
+                      Container(
+                        padding: const EdgeInsets.all(0),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.8),
+                          borderRadius: BorderRadius.circular(1000),
+                        ),
+                        child: Column(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                final formController =
+                                    Get.find<NewFileRegisterFormController>();
+                                formController.resetImage();
+                                setState(() {
+                                  _selectedImage = null;
+                                });
+                              },
+                              icon: Icon(
+                                Icons.cancel,
+                                size: 35,
+                                color: colors.onSurface.withOpacity(0.7),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+            ),
+          ],
         ),
       ),
     );

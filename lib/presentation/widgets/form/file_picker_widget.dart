@@ -45,28 +45,51 @@ class _FilePickerWidgetState extends State<FilePickerWidget> {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
-    return InkWell(
-      onTap: () {
-        _pickFile();
-      },
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: colors.surface,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: colors.onSurface.withOpacity(0.12),
-          ),
-        ),
-        child: SizedBox(
-          width: double.infinity,
-          height: 200,
-          child: Center(
-            child: (_selectedFile != null)
-                ? Text(_fileName!)
-                : const Text('Selecciona un archivo .DAT'),
-          ),
-        ),
+    return Stack(
+      alignment: Alignment.bottomRight, // Alinea los widgets en la parte inferior derecha
+      children: [
+        Container(
+    decoration: BoxDecoration(
+      color: colors.surface,
+      borderRadius: BorderRadius.circular(10),
+      border: Border.all(
+        color: colors.onSurface.withOpacity(0.2),
       ),
+    ),
+    child: SizedBox(
+      width: double.infinity,
+      height: 200,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+          (_selectedFile != null)
+            ? Text(_fileName!)
+            : const Text('Sube un archivo .DAT'),
+                (_selectedFile != null) ? IconButton(
+                  onPressed: (){
+                    final formController = Get.find<NewFileRegisterFormController>();
+                    formController.resetFile();
+                    setState(() {
+                      _selectedFile = null;
+                      _fileName = null;
+                    });
+                  }, 
+                  icon: Icon(Icons.cancel, color: colors.onSurface.withOpacity(0.7)),
+                  iconSize: 35,
+                ): IconButton(
+                  onPressed: (){
+                    _pickFile();
+                  }, 
+                  icon: Icon(Icons.upload_file, color: colors.onSurface.withOpacity(0.7)),
+                  iconSize: 30,
+                ),
+        ],)
+      ),
+    ),
+        ),
+    
+      ],
     );
   }
 }

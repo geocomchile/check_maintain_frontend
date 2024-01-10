@@ -25,8 +25,23 @@ class _DeviceSelectorWidgetState extends State<DeviceSelectorWidget> {
   @override
   Widget build(BuildContext context) {
     final formController = Get.find<NewFileRegisterFormController>();
+    final colors = Theme.of(context).colorScheme;
 
     return  DropdownButtonFormField(
+
+      borderRadius: BorderRadius.circular(10),
+      decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder( 
+      borderRadius: BorderRadius.circular(10), 
+      borderSide:  BorderSide(color: colors.primary)// Puedes ajustar el radio del borde aquí
+    ),
+    border: OutlineInputBorder( 
+      borderRadius: BorderRadius.circular(10), 
+
+    )
+    ),
+      // focusColor: Colors.green,
+      // iconEnabledColor: Colors.green,
       value: selectedDevice,
       hint: const Text('Selecciona un dispositivo'),
       onChanged: (Device? newValue) {
