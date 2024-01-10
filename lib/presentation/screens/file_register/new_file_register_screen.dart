@@ -1,6 +1,4 @@
-
 import 'package:check_maintain_frontend/domain/entities/device.dart';
-import 'package:check_maintain_frontend/presentation/controllers/device_controller.dart';
 import 'package:check_maintain_frontend/presentation/controllers/new_file_register_form_controller.dart';
 import 'package:check_maintain_frontend/presentation/widgets/form/device_selector_widget.dart';
 import 'package:check_maintain_frontend/presentation/widgets/form/file_picker_widget.dart';
@@ -18,16 +16,12 @@ class NewFileRegisterScreen extends StatefulWidget {
 }
 
 class _NewFileRegisterScreenState extends State<NewFileRegisterScreen> {
-
   List<Device> devices = [];
 
   @override
   void initState() {
     super.initState();
-
   }
-
-
 
   @override
   void dispose() {
@@ -47,30 +41,34 @@ class _NewFileRegisterScreenState extends State<NewFileRegisterScreen> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(children: [
-          
-          Row(children: [
-            Expanded(
-                child: DeviceSelectorWidget())
-          ]),
-          const SizedBox(height: 20,),
+          const Row(children: [Expanded(child: DeviceSelectorWidget())]),
+          const SizedBox(
+            height: 20,
+          ),
           const Row(children: [Expanded(child: ImagePickerWidget())]),
-          const SizedBox(height: 20,),
+          const SizedBox(
+            height: 20,
+          ),
           const Row(children: [Expanded(child: FilePickerWidget())]),
-          const SizedBox(height: 20,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+          const SizedBox(
+            height: 20,
+          ),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Obx(() => ElevatedButton.icon(
-                label: const Text('Guardar'), icon: const Icon(Icons.save_outlined), onPressed: formController.isChecked.value ? () {
-                  formController.save();
-        
-                }: null)),
+                label: const Text('Guardar'),
+                icon: const Icon(Icons.save_outlined),
+                onPressed: formController.isChecked.value
+                    ? () {
+                        formController.save();
+                      }
+                    : null)),
             const SizedBox(width: 60),
             ElevatedButton.icon(
-                label: const Text('Cancelar'), icon: const Icon(Icons.cancel_outlined), onPressed: () {
+                label: const Text('Cancelar'),
+                icon: const Icon(Icons.cancel_outlined),
+                onPressed: () {
                   formController.reset();
                   context.go('/');
-        
                 }),
           ]),
         ]),
