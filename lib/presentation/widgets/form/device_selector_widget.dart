@@ -35,7 +35,6 @@ void initState() {
 
   @override
   Widget build(BuildContext context) {
-    final formController = Get.find<NewFileRegisterFormController>();
     final deviceController = Get.find<DeviceController>();
     final colors = Theme.of(context).colorScheme;
 
@@ -58,8 +57,8 @@ void initState() {
       onChanged: (Device? newValue) {
         setState(() {
           // selectedDevice = newValue;
-          formController.setDevice(newValue!);
-          deviceController.index.value = devices.indexOf(newValue);
+          // formController.setDevice(newValue!);
+          deviceController.index.value = devices.indexOf(newValue!);
         });
       },
       items: devices.map<DropdownMenuItem<Device>>((Device value) {
