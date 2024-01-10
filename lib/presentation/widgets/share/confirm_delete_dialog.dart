@@ -18,7 +18,7 @@ void showDeleteConfirmation(BuildContext context, void Function() onPressed) {
             ),
             TextButton(
               onPressed: onPressed,
-              child: const Text('Borrar', style: TextStyle(color: Colors.red))
+              child: const Text('Borrar')
             ),
           ],
         );
