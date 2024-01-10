@@ -24,18 +24,10 @@ class _NewFileRegisterScreenState extends State<NewFileRegisterScreen> {
   @override
   void initState() {
     super.initState();
-    _getDevices();
 
   }
 
-  void _getDevices () async {
-    final deviceController = Get.find<DeviceController>();
-    await deviceController.getDevices();
-    setState(() {
-      devices = deviceController.devices;
-    });
 
-  }
 
   @override
   void dispose() {
@@ -58,9 +50,7 @@ class _NewFileRegisterScreenState extends State<NewFileRegisterScreen> {
           
           Row(children: [
             Expanded(
-                child: DeviceSelectorWidget(
-              devices: devices,
-            ))
+                child: DeviceSelectorWidget())
           ]),
           const SizedBox(height: 20,),
           const Row(children: [Expanded(child: ImagePickerWidget())]),

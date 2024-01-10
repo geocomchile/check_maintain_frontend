@@ -10,6 +10,7 @@ class DeviceController extends GetxController{
   var errorMessage = Rxn<String>();
   var devices = <Device>[].obs;
   late final DevicesRepositoryImpl _devicesRepositoryImpl;
+  var index = Rxn<int>();
 
   DeviceController(){
     final authController = Get.find<AuthController>();
