@@ -52,7 +52,6 @@ class DLRegisterController extends GetxController {
 
   Future<DlRegister> getRegisterById(String idRegister) async{
         try {
-          await Future.delayed(const Duration(seconds: 2));
       return await _dlRegisterRepositoryImpl.getRegisterById(idRegister);
     } catch (e) {
       throw CustomError(e.toString());

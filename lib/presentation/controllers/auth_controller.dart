@@ -19,7 +19,7 @@ class AuthController extends GetxController {
   }
 
   Future<void> login(String username, String password) async {
-    await Future.delayed(const Duration(milliseconds: 500));
+
     try {
       final user = await _authRepository.login(username, password);
       this.user.value = user;

@@ -95,7 +95,6 @@ class _DeviceScreenState extends State<DeviceScreen> {
       var registers =
           await dlRegisterController.getRegistersByDeviceId(widget.idDevice);
 
-      await Future.delayed(const Duration(milliseconds: 300));
       deviceController.errorMessage.value = null;
 
       setState(() {
