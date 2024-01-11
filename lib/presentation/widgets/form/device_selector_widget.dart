@@ -24,7 +24,9 @@ class _DeviceSelectorWidgetState extends State<DeviceSelectorWidget> {
 void initState() {
   super.initState();
   final deviceController = Get.find<DeviceController>();
-  deviceController.getDevices();
+  if (deviceController.devices.isEmpty){
+    deviceController.getDevices();
+  }
   devices = deviceController.devices;
   index = deviceController.index.value;
 
