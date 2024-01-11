@@ -73,10 +73,10 @@ class _DlRegisterDetailState extends State<DlRegisterDetail> {
                           children: [
                             ElevatedButton.icon(
                                 onPressed: () {
-                                  context.go('/');
+                                  context.pop();
                                 },
-                                icon: const Icon(Icons.home),
-                                label: const Text('Ir al Inicio')),
+                                icon: const Icon(Icons.arrow_back),
+                                label: const Text('Atras')),
                             const Spacer(),
                             ElevatedButton.icon(
                                 onPressed: () {

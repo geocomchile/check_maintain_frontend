@@ -55,6 +55,7 @@ class _DlRegistersTableState extends State<DlRegistersTable> {
     return SfDataGrid(
       onCellTap: (details) {
         final row = details.rowColumnIndex.rowIndex;
+        if (row == 0) return;
         final idRegister = _registers[row - 1].idRegister;
         GoRouter.of(context).push('/dl-register/$idRegister');
       },
