@@ -75,7 +75,7 @@ class _DlRegisterDetailState extends State<DlRegisterDetail> {
                                 onPressed: () {
                                   context.pop();
                                 },
-                                icon: const Icon(Icons.arrow_back),
+                                icon: const Icon(Icons.arrow_back_ios_rounded),
                                 label: const Text('Atras')),
                             const Spacer(),
                             ElevatedButton.icon(
