@@ -36,8 +36,7 @@ class DLRegisterController extends GetxController {
   Future<void> deleteRegisterById(String idRegister) async {
     try {
       await _dlRegisterRepositoryImpl.deleteRegisterById(idRegister);
-      appRouter.pop();
-      appRouter.pop();
+      appRouter.go('/');
     } catch (e) {
       throw CustomError(e.toString());
     }
