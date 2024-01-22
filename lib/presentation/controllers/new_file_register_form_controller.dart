@@ -38,6 +38,7 @@ class NewFileRegisterFormController extends GetxController {
     await dlRegisterController.createRegisterByFiles(
         device.value!, image.value!, file.value!);
     appRouter.go('/');
+    reset();
   }
 
   void cancel() {
