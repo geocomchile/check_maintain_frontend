@@ -6,5 +6,5 @@ class Environment {
   }
 
   static String apiUrl =
-      dotenv.env['API_URL'] ?? 'API_URL Not configured in .env';
+      dotenv.env['API_URL'] ?? 'https://breabidjtb.execute-api.us-east-1.amazonaws.com/dev/api';
 }
