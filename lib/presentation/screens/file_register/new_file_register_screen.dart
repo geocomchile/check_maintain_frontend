@@ -38,40 +38,42 @@ class _NewFileRegisterScreenState extends State<NewFileRegisterScreen> {
       appBar: AppBar(
         title: const Text('New File Register'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(children: [
-          const Row(children: [Expanded(child: DeviceSelectorWidget())]),
-          const SizedBox(
-            height: 20,
-          ),
-          const Row(children: [Expanded(child: ImagePickerWidget())]),
-          const SizedBox(
-            height: 20,
-          ),
-          const Row(children: [Expanded(child: FilePickerWidget())]),
-          const SizedBox(
-            height: 20,
-          ),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Obx(() => ElevatedButton.icon(
-                label: const Text('Guardar'),
-                icon: const Icon(Icons.save_outlined),
-                onPressed: formController.isChecked.value
-                    ? () {
-                        formController.save();
-                      }
-                    : null)),
-            const SizedBox(width: 60),
-            ElevatedButton.icon(
-                label: const Text('Cancelar'),
-                icon: const Icon(Icons.cancel_outlined),
-                onPressed: () {
-                  formController.reset();
-                  context.go('/');
-                }),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(children: [
+            const Row(children: [Expanded(child: DeviceSelectorWidget())]),
+            const SizedBox(
+              height: 20,
+            ),
+            const Row(children: [Expanded(child: ImagePickerWidget())]),
+            const SizedBox(
+              height: 20,
+            ),
+            const Row(children: [Expanded(child: FilePickerWidget())]),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Obx(() => ElevatedButton.icon(
+                  label: const Text('Guardar'),
+                  icon: const Icon(Icons.save_outlined),
+                  onPressed: formController.isChecked.value
+                      ? () {
+                          formController.save();
+                        }
+                      : null)),
+              const SizedBox(width: 60),
+              ElevatedButton.icon(
+                  label: const Text('Cancelar'),
+                  icon: const Icon(Icons.cancel_outlined),
+                  onPressed: () {
+                    formController.reset();
+                    context.go('/');
+                  }),
+            ]),
           ]),
-        ]),
+        ),
       ),
     );
   }
