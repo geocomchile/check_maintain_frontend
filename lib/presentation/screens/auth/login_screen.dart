@@ -8,12 +8,11 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-      ),
-      body: const MyCustomForm()
-    );
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Login'),
+        ),
+        body: const MyCustomForm());
   }
 }
 
@@ -25,8 +24,10 @@ class MyCustomForm extends StatefulWidget {
 }
 
 class _MyCustomFormState extends State<MyCustomForm> {
-  final TextEditingController usernameController = TextEditingController(text: 'obedmacallums');
-  final TextEditingController passwordController = TextEditingController(text: "O12345678");
+  final TextEditingController usernameController =
+      TextEditingController(text: '');
+  final TextEditingController passwordController =
+      TextEditingController(text: "");
 
   @override
   void dispose() {
@@ -49,7 +50,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
             child: TextField(
               controller: usernameController,
               decoration: const InputDecoration(
-                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
                 hintText: 'username',
                 labelText: 'Username',
               ),
@@ -61,7 +63,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
               controller: passwordController,
               obscureText: true,
               decoration: const InputDecoration(
-                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
                 labelText: 'Password',
                 hintText: 'Enter your password',
               ),
@@ -74,12 +77,15 @@ class _MyCustomFormState extends State<MyCustomForm> {
                 Expanded(
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(colors.secondaryContainer),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          colors.secondaryContainer),
                     ),
                     onPressed: () {
-                      controller.login(usernameController.text, passwordController.text);
+                      controller.login(
+                          usernameController.text, passwordController.text);
                     },
-                    child: Text('Login', style: TextStyle(color: colors.onBackground)),
+                    child: Text('Login',
+                        style: TextStyle(color: colors.onBackground)),
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -89,7 +95,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
             // username
-            child: Obx(() => Text(controller.user.value?.username ?? '')),  
+            child: Obx(() => Text(controller.user.value?.username ?? '')),
           ),
           // errors
           Padding(
